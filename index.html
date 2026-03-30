@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stardew Valley MOD 图鉴</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Microsoft Yahei", sans-serif;
+      background: linear-gradient(135deg, #e6f7ff 0%, #fce4ec 50%, #f3e5f5 100%);
+      min-height: 100vh;
+      color: #666;
+      padding: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      color: #d8a7d1;
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .header .subtitle {
+      font-size: 18px;
+      color: #b39ddb;
+    }
+
+    .header .btn-group {
+      margin-top: 20px;
+    }
+
+    .header .btn {
+      display: inline-block;
+      padding: 8px 20px;
+      background: #fff;
+      color: #b39ddb;
+      border: 1px solid #e1bee7;
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 0 5px;
+      font-size: 14px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(200, 180, 220, 0.15);
+    }
+
+    .section-title {
+      font-size: 16px;
+      color: #b39ddb;
+      margin-bottom: 15px;
+      padding-left: 8px;
+      border-left: 3px solid #e1bee7;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .section-header .btn {
+      padding: 6px 12px;
+      background: #fff;
+      color: #b39ddb;
+      border: 1px solid #e1bee7;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(200, 180, 220, 0.1);
+    }
+
+    .card-img {
+      height: 220px;
+      background: linear-gradient(135deg, #ffd6e0 0%, #f8bbd0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .card-info {
+      padding: 12px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .card-actions .btn {
+      flex: 1;
+      padding: 6px;
+      background: #fce4ec;
+      color: #ad1457;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>✧ Stardew Valley MOD 图鉴 ✧</h1>
+    <p class="subtitle">♡ eeの小屋 ♡</p>
+    <div class="btn-group">
+      <a href="#" class="btn">新建分类</a>
+      <a href="#" class="btn">导出</a>
+      <a href="#" class="btn">导入</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">UI 类</div>
+    <div class="section-header">
+      <button class="btn">↑</button>
+      <button class="btn">↓</button>
+      <button class="btn">新建卡片</button>
+      <button class="btn">改名</button>
+      <button class="btn">删除</button>
+    </div>
+    <div class="card-grid">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">光标工具类</div>
+    <div class="section-header">
+      <button class="btn">↑</button>
+      <button class="btn">↓</button>
+      <button class="btn">新建卡片</button>
+      <button class="btn">改名</button>
+      <button class="btn">删除</button>
+    </div>
+    <div class="card-grid">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">美化类</div>
+    <div class="section-header">
+      <button class="btn">↑</button>
+      <button class="btn">↓</button>
+      <button class="btn">新建卡片</button>
+      <button class="btn">改名</button>
+      <button class="btn">删除</button>
+    </div>
+    <div class="card-grid">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">NPC 类</div>
+    <div class="section-header">
+      <button class="btn">↑</button>
+      <button class="btn">↓</button>
+      <button class="btn">新建卡片</button>
+      <button class="btn">改名</button>
+      <button class="btn">删除</button>
+    </div>
+    <div class="card-grid">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">拓展剧情类</div>
+    <div class="section-header">
+      <button class="btn">↑</button>
+      <button class="btn">↓</button>
+      <button class="btn">新建卡片</button>
+      <button class="btn">改名</button>
+      <button class="btn">删除</button>
+    </div>
+    <div class="card-grid">
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">衣服美化类</div>
+    <div class="section-header">
+      <button class="btn">↑</button>
+      <button class="btn">↓</button>
+      <button class="btn">新建卡片</button>
+      <button class="btn">改名</button>
+      <button class="btn">删除</button>
+    </div>
+    <div class="card-grid">
+    </div>
+  </div>
+</body>
+</html>
