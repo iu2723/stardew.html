@@ -414,6 +414,10 @@
       <div id="fileListContainer" class="file-list"></div>
       <div class="add-file-btn" onclick="addFileItem()">+ 添加下载链接 / 上传文件</div>
     </div>
+   <div style="display: flex; gap: 10px; margin-top: 8px;">
+  <div class="add-file-btn" onclick="addFileItem()" style="flex:1;">🔗 添加链接</div>
+  <div class="add-file-btn" onclick="uploadLocalFile()" style="flex:1;">📁 从本地上传</div>
+   </div>
     <div class="modal-footer">
       <button class="btn-delete-card" onclick="deleteCurrentCard()">删除此模组</button>
       <button class="btn-save" onclick="saveCurrentCard()">保存修改</button>
