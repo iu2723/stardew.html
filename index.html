@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>eeの小屋 - 星露谷模组合集</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -21,17 +21,11 @@
     justify-content:space-between;
     align-items:center;
     margin-bottom:20px;
-    flex-wrap:wrap;
-    gap:10px;
   }
   .top-bar h1{
     font-size:22px;
     color:#d887b1;
     text-shadow:0 0 4px rgba(255,255,255,0.5);
-  }
-  .top-bar .btn-group{
-    display:flex;
-    gap:8px;
   }
   .top-bar button{
     padding:8px 12px;
@@ -41,78 +35,39 @@
     color:#c377a1;
     cursor:pointer;
     font-size:12px;
-    transition:all 0.2s;
-  }
-  .top-bar button:hover{
-    background:#fce4ec;
-    border-color:#c377a1;
   }
 
-  /* 分类容器 */
-  .category-container{
-    margin-bottom:25px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.4);
-    backdrop-filter:blur(2px);
-    padding:8px;
-  }
-  .category-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:0 5px 10px 5px;
-  }
+  /* 分类标题 */
   .category-title{
     font-size:16px;
     color:#c377a1;
+    margin:15px 0 10px 5px;
     padding-left:5px;
     border-left:3px solid #f2a7c1;
-    font-weight:bold;
-  }
-  .category-actions button{
-    background:transparent;
-    border:none;
-    color:#c377a1;
-    cursor:pointer;
-    font-size:12px;
-    margin-left:8px;
-    padding:4px 6px;
-    border-radius:6px;
-  }
-  .category-actions button:hover{
-    background:#fce4ec;
   }
 
-  /* 网格：一排 5 个，移动端自适应 */
+  /* 网格：一排 5 个（和截图一样） */
   .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(130px, 1fr));
-    gap:12px;
-  }
-  @media (min-width: 800px){
-    .grid{
-      grid-template-columns:repeat(5,1fr);
-    }
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-bottom:25px;
   }
 
-  /* 卡片样式 */
+  /* 卡片样式（模仿你给的APP截图） */
   .mod-card{
     background:#fff;
     border-radius:10px;
     overflow:hidden;
     box-shadow:0 2px 8px rgba(0,0,0,0.1);
     cursor:pointer;
-    transition:transform 0.2s, box-shadow 0.2s;
-    position:relative;
+    transition:transform 0.2s;
   }
-  .mod-card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
-  }
+  .mod- card:hover{transform:scale(1.02)}
+
   .card-img{
     height:130px;
     background:#fce4ec;
-    position:relative;
   }
   .card-img img{
     width:100%;
@@ -126,52 +81,9 @@
     font-size:13px;
     color:#555;
     background:#fdf2f8;
-    word-break:break-all;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  .card-name span{
-    flex:1;
-  }
-  .card-edit-btn{
-    background:transparent;
-    border:none;
-    color:#c377a1;
-    cursor:pointer;
-    font-size:12px;
-    padding:2px 5px;
-    border-radius:4px;
-  }
-  .card-edit-btn:hover{
-    background:#ffe0f0;
-  }
-  .delete-card{
-    position:absolute;
-    top:5px;
-    right:5px;
-    background:rgba(0,0,0,0.5);
-    color:white;
-    border:none;
-    border-radius:20px;
-    width:24px;
-    height:24px;
-    font-size:14px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    opacity:0;
-    transition:opacity 0.2s;
-  }
-  .mod-card:hover .delete-card{
-    opacity:1;
-  }
-  .delete-card:hover{
-    background:#c2185b;
   }
 
-  /* 详情页样式 */
+  /* 详情页容器（默认隐藏） */
   #detail-page{
     display:none;
     background:#fff;
@@ -187,22 +99,18 @@
     margin-bottom:20px;
     padding-bottom:10px;
     border-bottom:1px solid #f8bbd0;
-    flex-wrap:wrap;
-    gap:10px;
   }
-  .detail-header h2{
-    color:#d887b1;
-    font-size:18px;
-    word-break:break-all;
-  }
+  .detail-header h2{color:#d887b1;font-size:18px}
   .detail-header button{
-    padding:6px 12px;
+    padding:6px 10px;
     background:#f8bbd0;
     border:none;
     border-radius:6px;
     color:#c2185b;
     cursor:pointer;
   }
+
+  /* 详情内的链接格子 */
   .link-grid{
     display:grid;
     grid-template-columns:1fr;
@@ -215,15 +123,13 @@
     background:#fdf2f8;
     border-radius:10px;
     border:1px solid #f8bbd0;
-    flex-wrap:wrap;
-    gap:8px;
   }
   .link-item input{
-    flex:2;
-    min-width:150px;
+    flex:1;
     padding:8px;
     border:1px solid #e1b7d1;
     border-radius:6px;
+    margin-right:10px;
     font-size:13px;
   }
   .link-item button{
@@ -235,53 +141,44 @@
     cursor:pointer;
     font-size:12px;
   }
-  .link-item .upload-file{
-    background:#e8f0fe;
-    border-color:#b0c4de;
-  }
-  #detail-page .add-link-btn{
-    margin-top:15px;
-    padding:8px;
-    background:#fce4ec;
-    border:none;
-    border-radius:6px;
-    color:#ad1457;
-    cursor:pointer;
-    width:100%;
-  }
-  .toast{
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#333;
-    color:#fff;
-    padding:8px 16px;
-    border-radius:20px;
-    font-size:12px;
-    z-index:1000;
-    opacity:0;
-    transition:opacity 0.3s;
-    pointer-events:none;
-  }
 
-  /* 隐藏文件选择器 */
-  .hidden-input{display:none}
+  /* 隐藏上传 */
+  #img-picker, #file-picker{display:none}
 </style>
 </head>
+
 <body>
 
 <!-- 列表页面 -->
 <div id="list-page">
   <div class="top-bar">
     <h1>✧ 星露谷模组合集 ✧</h1>
-    <div class="btn-group">
-      <button onclick="exportData()">导出备份</button>
-      <button onclick="importData()">导入备份</button>
-      <button onclick="addNewCategory()">+ 新建分类</button>
-    </div>
+    <button onclick="addNewCategory()">新建分类</button>
   </div>
-  <div id="categories-container"></div>
+
+  <!-- 分类：UI 类 -->
+  <div class="category-title">UI 类</div>
+  <div class="grid" id="cat-ui"></div>
+
+  <!-- 分类：光标工具类 -->
+  <div class="category-title">光标工具类</div>
+  <div class="grid" id="cat-cursor"></div>
+
+  <!-- 分类：美化类 -->
+  <div class="category-title">美化类</div>
+  <div class="grid" id="cat-beautify"></div>
+
+  <!-- 分类：NPC 类 -->
+  <div class="category-title">NPC 类</div>
+  <div class="grid" id="cat-npc"></div>
+
+  <!-- 分类：拓展剧情类 -->
+  <div class="category-title">拓展剧情类</div>
+  <div class="grid" id="cat-story"></div>
+
+  <!-- 分类：衣服美化类 -->
+  <div class="category-title">衣服美化类</div>
+  <div class="grid" id="cat-clothes"></div>
 </div>
 
 <!-- 详情页面 -->
@@ -291,48 +188,94 @@
     <button onclick="showList()">返回</button>
   </div>
   <div class="link-grid" id="link-container"></div>
-  <button class="add-link-btn" onclick="addLink()">+ 添加链接</button>
+  <button style="margin-top:15px;padding:8px;background:#fce4ec;border:none;border-radius:6px;color:#ad1457;cursor:pointer" onclick="addLink()">+ 添加链接</button>
 </div>
 
 <!-- 隐藏控件 -->
-<input type="file" id="img-picker" accept="image/*" class="hidden-input">
-<input type="file" id="backup-picker" accept=".json" class="hidden-input">
+<input type="file" id="img-picker" accept="image/*">
+<input type="file" id="file-picker" multiple>
 
 <script>
-// ---------- 数据模型 ----------
-let appData = {
-  categories: [],    // [{ id, name }]
-  cards: {},         // { categoryId: [{ id, name, imgDataUrl, links: [{ text }] }] }
-  nextCardId: 1
-};
+let currentDetailCard = null; // 当前操作的详情卡片
+let currentCategory = '';      // 当前所属分类
 
-// 保存到localStorage
-function saveToLocal() {
-  localStorage.setItem('stardewMods', JSON.stringify(appData));
+// ---- 1. 核心：添加一个图片卡片（入口） ----
+function addCard(categoryId) {
+  currentCategory = categoryId;
+  
+  // 上传图片
+  document.getElementById('img-picker').onchange = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const imgUrl = URL.createObjectURL(file);
+    
+    // 创建卡片HTML
+    const cardHtml = `
+      <div class="mod-card" onclick="showDetail(this)">
+        <div class="card-img"><img src="${imgUrl}"></div>
+        <div class="card-name">点击进入</div>
+      </div>
+    `;
+    
+    document.getElementById(`cat-${categoryId}`).innerHTML += cardHtml;
+  };
+  
+  document.getElementById('img-picker').click();
 }
 
-// 加载初始数据
-function loadFromLocal() {
-  const saved = localStorage.getItem('stardewMods');
-  if(saved){
-    try{
-      const parsed = JSON.parse(saved);
-      // 兼容旧数据格式
-      if(parsed.categories && parsed.cards){
-        appData = parsed;
-        if(!appData.nextCardId) appData.nextCardId = 1;
-      } else {
-        initDefaultData();
-      }
-    }catch(e){ initDefaultData(); }
-  } else {
-    initDefaultData();
+// 给6个分类绑定添加按钮（方便扩展）
+window.addNewCategory = function() {
+  const cat = prompt("输入分类ID（如: ui）", "ui");
+  if(cat){
+    const section = document.createElement('div');
+    section.className = 'category-title';
+    section.innerText = cat + '类';
+    document.body.appendChild(section);
+    
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    grid.id = `cat-${cat}`;
+    document.body.appendChild(grid);
+    
+    // 自动给这个分类加一个添加按钮
+    alert(`分类 "${cat}" 创建成功！请刷新页面，然后通过代码手动添加：addCard('${cat}')`);
   }
-  renderAll();
 }
 
-// 初始化默认分类和示例卡片（可选）
-function initDefaultData(){
-  appData.categories = [
-    { id: "ui", name: "UI 类" },
-    { id: "cu
+// ---- 2. 核心：点图片进入详情页 ----
+function showDetail(cardEl) {
+  currentDetailCard = cardEl;
+  
+  // 显示详情页，隐藏列表页
+  document.getElementById('list-page').style.display = 'none';
+  document.getElementById('detail-page').style.display = 'block';
+  
+  // 这里可以加载该卡片之前保存的链接（如果有）
+  // 目前是空白，你可以自己加
+}
+
+// ---- 3. 核心：详情页返回 ----
+function showList() {
+  document.getElementById('list-page').style.display = 'block';
+  document.getElementById('detail-page').style.display = 'none';
+}
+
+// ---- 4. 核心：添加链接 ----
+function addLink() {
+  const linkHtml = `
+    <div class="link-item">
+      <input type="text" placeholder="输入链接或文件名" value="https://">
+      <button onclick="this.parentElement.remove()">删除</button>
+    </div>
+  `;
+  document.getElementById('link-container').innerHTML += linkHtml;
+}
+
+// ---- 5. 辅助：监听文件导入（如果需要上传文件而不是链接） ----
+// 你可以根据需要选择是用“链接”还是“上传文件”
+// 目前版本是“链接模式”，点进详情页可以自己加多个链接
+</script>
+
+</body>
+</html>
