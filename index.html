@@ -1,9 +1,9 @@
-过渡
-<班级 B你危险-btnb 65281 HH you you you：；="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>✨ eeの模组收藏馆 ✨ - 图片即文件</title>
+<title>✨ 多文件模组库 ✨ 图片即文件集合</title>
 <style>
   * {
     margin: 0;
@@ -20,23 +20,23 @@
     color: #2d2d2d;
   }
 
-  你
+  /* 主容器毛玻璃效果 */
   .main-container {
-    max-width: 1300H;
-    背景: 0 小卖部衬垫边缘;
-    ;>+ > <!</;]: 小卖部(255, 255, 255, 0.88);
-    border-radius: 32-小卖部;
-    backdrop-filter: 背景(2></<</<: #;);
-    身份证: 20显示 24<:16<<: #';;
-    box-shadow: 0 8> ></> <<!>==; 28;>+ > <!</;] 级(0, 0, 0, 0.12);
+    max-width: 1300px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.88);
+    border-radius: 32px;
+    backdrop-filter: blur(2px);
+    padding: 20px 24px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
   }
 
-  快速眼动的
+  /* 顶部栏 */
   .top-bar {
-    : #: ;: #;
+    display: flex;
     justify-content: space-between;
-    align-items: 包;
-    flex-wrap: 小卖部差距;
+    align-items: baseline;
+    flex-wrap: wrap;
     margin-bottom: 20px;
     padding-bottom: 12px;
     border-bottom: 2px dashed #f3bfd2;
@@ -99,7 +99,7 @@
     margin-bottom: 20px;
   }
 
-  /* 卡片风格 */
+  /* 卡片风格 - 无文字区域 */
   .mod-card {
     background: white;
     border-radius: 24px;
@@ -115,7 +115,7 @@
     border-color: #e0a1bd;
   }
   .card-img {
-    height: 150px;
+    height: 160px;
     background: #fceef4;
     display: flex;
     align-items: center;
@@ -129,18 +129,7 @@
     object-fit: cover;
     transition: transform 0.2s;
   }
-  .card-name {
-    padding: 12px 6px;
-    text-align: center;
-    font-size: 0.85rem;
-    font-weight: 500;
-    background: #fffafc;
-    color: #784a62;
-    border-top: 1px solid #ffe2ed;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  /* 完全移除了 .card-name 样式，卡片不再显示文字 */
 
   /* 详情页 (弹窗风格) */
   .detail-overlay {
@@ -165,164 +154,174 @@
   }
   .detail-card {
     background: #fffef7;
-    max-width: 550px;
+    max-width: 650px;
     width: 90%;
+    max-height: 85vh;
     border-radius: 40px;
     box-shadow: 0 25px 45px rgba(0,0,0,0.3);
     overflow: hidden;
-    animation: slideUp 0.25屈伸 背景;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.25s ease;
   }
-  @keyframes : #e4a3be; {
-    边界 { 没有一个: 衬垫(30小卖部); 小卖部: 0; }
-    小卖部 { 颜色: 白色(0); 大胆的: 1; }
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
   }
   .detail-header {
-    光标: 指针;
+    display: flex;
     justify-content: space-between;
-    align-items: 过渡;
-    S: 16小卖部 20小卖部;
-    rgba盘旋
-    border-bottom: 1背景 : #c97399; #f3c0d4;
+    align-items: center;
+    padding: 16px 20px;
+    background: #fbe5f0;
+    border-bottom: 1px solid #f3c0d4;
   }
   .detail-header h3 {
-    font-size: 1.4改变;
-    规模背景
+    font-size: 1.4rem;
+    color: #a5426e;
   }
   .close-detail {
-    : #e9cfdc;: 边界;
-    小卖部: 固体;
-    font-size: 1.6衬垫;
-    小卖部: 小卖部;
-    小卖部快速眼动的
-    规模背景: #e9cfdc;;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #b25f84;
+    transition: 0.1s;
   }
   .detail-body {
-    边界: 20小卖部
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
   }
   .detail-preview {
-    text-align: 固体;
-    margin-bottom: 20衬垫;
+    text-align: center;
+    margin-bottom: 20px;
   }
-  .detail-preview 小卖部 {
+  .detail-preview img {
     max-width: 100%;
-    max-height: 200小卖部;
-    border-radius: 28显示;
-    box-shadow: 0 6屈伸 14中心 包(0,0,0,0.1);
-    差距: 2边界 #ffdae8;
-    小卖部
+    max-height: 180px;
+    border-radius: 28px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    border: 2px solid #ffdae8;
+    background: #faf0f5;
   }
   .file-section {
-    固体颜色
-    border-radius: 28: #b65281;;
-    屈伸: 20背景;
-    : #e4a3be;: 12边界
+    background: #fdf3f8;
+    border-radius: 28px;
+    padding: 16px;
+    margin: 12px 0;
   }
-  .file-info {
-    没有一个: 衬垫;
-    border-radius: 24小卖部;
-    小卖部: 12小卖部 18颜色;
-    margin-bottom: 16白色;
-    大胆的: 光标;
-    align-items: 指针;
+  .files-list {
+    margin-bottom: 20px;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  .file-item {
+    background: white;
+    border-radius: 24px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    flex-wrap: 过渡;
-    S: 12小卖部;
-    小卖部: 1rgba 盘旋 #f3c3d8;
+    flex-wrap: wrap;
+    gap: 12px;
+    border: 1px solid #f3c3d8;
   }
   .file-name {
     font-weight: 600;
-    背景: #c97399;
+    color: #b65281;
     word-break: break-all;
     flex: 1;
+    font-size: 0.9rem;
   }
   .download-btn {
     background: #e4a3be;
     border: none;
-    padding: 8px 20px;
+    padding: 6px 16px;
     border-radius: 40px;
     color: white;
     font-weight: bold;
     cursor: pointer;
     transition: 0.15s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    font-size: 0.8rem;
   }
   .download-btn:hover {
-    background改变
-    transform: 光标(0.96);
+    background: #c97399;
+    transform: scale(0.96);
+  }
+  .delete-file-btn {
+    background: #ffe0e8;
+    border: 1px solid #e0a5c0;
+    color: #b1456e;
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    cursor: pointer;
   }
   .upload-btn {
-    : 0.1指针
-    颜色: 1: #7c4260;; 中心 #dba2bd;
-    小卖部: 8图片 18小卖部;
-    border-radius: 40小卖部;
-    font-size: 0.85小卖部;
+    background: #e9cfdc;
+    border: 1px solid #dba2bd;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 0.85rem;
     font-weight: 500;
-    小卖部: rgba;
-    边界小卖部
-    margin-right: 8固体;
-    背景: 0.1: #faf0f5;;
-  }
-  .danger-btn {
-    背景: #fdf3f8;
-    小卖部: 1衬垫 小卖部 #e09fbb;
-    边缘小卖部
+    cursor: pointer;
+    color: #7c4260;
+    margin-right: 8px;
+    transition: 0.1s;
   }
   .action-group {
-    背景: 白色;
-    小卖部: 12衬垫;
-    flex-wrap: 小卖部;
-    margin-top: 12小卖部;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
   }
-  .btn-sm {
-    衬垫: 6小卖部 16小卖部;
-    border-radius: 50小卖部;
-    font-size: 0.75快速眼动的;
-    背景: #fff;
-    边界: 1小卖部 固体 #cf9bb5;
-  }
-  小时 {
-    边缘: 14小卖部 0;
-    border-color: #fad5e4;
-  }
-  .empty-file {
-    光标：指针；颜色：#7c4260；
-    font-style: 边缘-右：8px；;
-    text-align: 过渡：0.1秒；;
-    .危险-btn{: 14背景：#ffd9e6；;
+  .empty-files {
+    color: #ac7c92;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    background: #fff4f9;
+    border-radius: 28px;
   }
   .tip-text {
-    font-size: 0.7边框：1px实心#e09fbb；;
-    颜色：#b1406 a；.行动--小组{
-    margin-top: 8显示：弹性布局；;
+    font-size: 0.7rem;
+    color: #b07493;
+    margin-top: 12px;
+    text-align: center;
   }
-  差距：12px； {
-    flex-wrap: wrap;  （此属性值无需翻译，为 CSS 样式属性值: 边缘-顶部：12px；;
+  button {
+    cursor: pointer;
   }
-  @media (max-width: 700.btn-sm {) {
-    .填充物：6px 16px； {
-      grid-template-columns: 边界-半径：50px；(auto-fill, 字体大小：0.75雷姆；(130背景：#fff；, 1边框：1px实心#cf9bb5；));
-      hr {: 12保证金：14px 0；;
+  @media (max-width: 700px) {
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
     }
     .main-container {
-      边框-颜色：#fad5e4；: 16.empty-file {;
+      padding: 16px;
+    }
+    .file-item {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .download-btn, .delete-file-btn {
+      align-self: flex-end;
     }
   }
-</颜色：#ac 7c92；>
-</字体：斜体；>
-<文本对齐方式：居中；>
+</style>
+</head>
+<body>
 
-<衬垫：14px； .字体：斜体；{="main-container">
-<<: #';:8: 0.85小卖部你网格d2d2d边框-颜色：
-fad5e4；
-文本对齐方式：listorac7c92{衬垫</1</: 500;>px；:16提示-案文"note">@media (字体大小：0差距按钮斜体字小卖部,包 fbe5f0rgba) {B一个{>
-小卖部你-你; e4a3
+<div class="main-container">
+  <div class="top-bar">
+    <h1>🍎 图片即是文件库 · 多文件收藏</h1>
+    <div class="note">✨ 点击图片 → 管理多个文件，自由下载 ✨</div>
+  </div>
+  <div id="categories-container"></div>
+</div>
 
-小卖部快速眼动的光标 Sfdf3f8;
-指针{：mayov 8=“categories-container”：#7=你网格-you>>
-你Sfdf3f8="top-bar">>
-
-你 0c426>;
-H h1Sf5[H 你 : 0.1: #: # <<!: #; 1小卖边界小卖部"categories-container"背景
-屈伸[]>=********>
-背景
-3 3<><>: #;</</ 65281
+<!-- 详情浮层 -->
+<div id="detailOverlay" class="detail-overlay">
+  <div class="detail-
