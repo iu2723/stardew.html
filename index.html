@@ -1,84 +1,121 @@
-</班级>
-<按钮 班级="zh-CN">
-<单击时>
-<文档 getElementById="UTF-8">
-<点击 导入文件="viewport" 按钮=按钮>
-<班级
-单击时>
-出口数据
-导出配置
-大胆的
-风格
-头
-</身体>
-</级>
-<班级
-星露谷
-模
-P
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:15px}
-班级
-e小屋
-.card-info{padding:12px}
-.card-title{font-size:14px;color:#777;margin-bottom:10px}
-.card-actions{display:flex;gap:8px}
-P
-#fileInput{display:none}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星露谷物语图鉴 - ee的小屋</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:"Microsoft Yahei",sans-serif;
+    background: no-repeat center center fixed;
+    background-size: cover;
+    min-height:100vh;color:#444;padding:20px;
+  }
+  .header{text-align:center;margin:30px 0}
+  .header h1{font-size:32px;color:#d8a7d1;margin-bottom:10px}
+  .header .subtitle{font-size:18px;color:#b39ddb;margin-bottom:20px}
+  .btn{
+    padding:8px 14px;background:#fff;
+    border:1px solid #f48fb1;color:#d8a7d1;
+    border-radius:10px;cursor:pointer;
+    margin:0 5px;font-size:14px;
+  }
+  .section{
+    background:rgba(255,255,255,0.85);
+    border-radius:16px;padding:20px;margin:20px 0;
+    box-shadow:0 4px 12px rgba(200,180,220,0.15)
+  }
+  .section-title{
+    font-size:17px;color:#d8a7d1;
+    margin-bottom:15px;padding-left:10px;
+    border-left:3px solid #f48fb1;
+  }
+  .section-header{
+    display:flex;justify-content:flex-end;gap:10px;
+    margin-bottom:15px;
+  }
+  .card-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:15px;margin-top:10px;
+  }
+  .card{
+    background:#fff;border-radius:12px;overflow:hidden;
+    box-shadow:0 2px 8px rgba(200,180,220,0.1);
+  }
+  .card-img{
+    height:140px;background:#fce4ec;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;color:#fff;
+  }
+  .card-img img{width:100%;height:100%;object-fit:cover}
+  .card-info{padding:12px}
+  .card-name{
+    font-size:14px;margin-bottom:10px;
+    padding:6px 8px;width:100%;
+    border:1px solid #eee;border-radius:6px;
+  }
+  .card-actions{
+    display:flex;gap:8px;
+  }
+  .card-actions button{
+    flex:1;padding:6px;border:none;
+    background:#fce4ec;color:#ad1457;
+    border-radius:6px;cursor:pointer;
+  }
+  #fileInput{display:none}
 </style>
 </head>
+
 <body>
 <div class="header">
-  <h1>✧ Stardew Valley MOD 图鉴 ✧</h1>
-  <p class="subtitle">♡ eeの小屋 ♡</p>
-  <div class="btn-group">
-    <button class="btn" onclick="document.getElementById('fileInput').click()">导入文件</button>
-    <button class="btn" onclick="exportData()">导出配置</大胆的>
-    <风格 头="btn" 身体=级>班级
-  </星露谷MOD图鉴>
-  <P 班级="file" e小屋="fileInput" P 级="*">
-班级
+  <h1>✨ 星露谷物语图鉴 ✨</h1>
+  <p class="subtitle">ee的小屋</p>
+  <button class="btn" onclick="document.getElementById('fileInput').click()">上传文件/图片</button>
+  <input type="file" id="fileInput" multiple accept="*">
+</div>
 
-<按钮 班级="section">
-  <单击时 文档="section-title">getElementById
-  <点击 导入文件="section-header">
-    <按钮 按钮="btn" 班级=单击时>出口数据</导出配置>
-大胆的
-  <风格
-风格
+<div class="section">
+  <div class="section-title">UI 类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('ui')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="ui"></div>
+</div>
 
-头 身体="section">
-  <级</班级> 星露谷 MOD P 班级="section-title">e小屋
-  <P 级="section-header">
+<div class="section">
+  <div class="section-title">光标工具类</div>
+  <div class="section-header">
     <button class="btn" onclick="addCard('cursor')">新建卡片</button>
   </div>
   <div class="card-grid" id="cursor"></div>
-</级>
+</div>
 
-<班级 级="section">
-  <级 班级="section-title">按钮</班级>
-  <单击时 addCard="section-header">
-    <新建卡片 按钮="btn" 级="级('beautify')">班级</身份证>
-  </级>
-  <级 剧本="card-grid" 常量="beautify"></fileInput>
-</文档>
+<div class="section">
+  <div class="section-title">美化类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('beautify')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="beautify"></div>
+</div>
 
-<getElementById fileInput="section">
-  <添加事件监听器 , (e) => {="section-title">const files = e.target.files;</如果（！files.length）返回；>
-  <for（让f of files）{ const url = URL.createObjectURL(f);="section-header">
-    <addCardWithFile(f.name, url); 函数addCard（cate）{="btn" const html = `="<div class="卡片">('npc')"><div class="card-img">📦</div></<div class="card-info">>
-  </<div class=“card-title”>新 MOD</div>>
-  <<div class="card-actions"> <button class=“btn”onclick=“rename（this）”>改名</button>="card-grid" <button class=“btn”onclick=“del（this）”>删除</button>="npc"></document.getElementById(cate).innerHTML += html;>
-</函数addCardWithFile（名称，url）{>
+<div class="section">
+  <div class="section-title">NPC 类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('npc')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="npc"></div>
+</div>
 
-<const html = ` <div class="卡片">="section">
-  <<div class="card-img"><img src="${url}" style="width:100%;height:100%;object-fit:cover"></div> <div class="card-info">="section-title"><div class="card-title">${name}</div></<div class="card-actions">>
-  <<button class=“btn”onclick=“rename（this）”>改名</button> <button class=“btn”onclick=“del（this）”>删除</button>="section-header">
-    <document.getElementById('ui').innerHTML += html; 函数重命名（el）{="btn" const t = el.parentElement.parentElement.querySelector('.card-title');="const v=prompt('新名称'，T.innerText)；('story')">if(v) t.innerText = v;</函数del（el）{>
-  </if（confirm('确定删除？')）el.Excise（'. card'）. remove（）；>
-  <函数clearAll（）{ 如果（确认（'确定清空所有卡片？'））{="card-grid" 函数exportData（）{="story"></警报（'导出功能：you you you you you you，you'）；>
-</剧本>
+<div class="section">
+  <div class="section-title">拓展剧情类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('story')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="story"></div>
+</div>
 
-<身体 超文本标记语言="section">
+<div class="section">
   <div class="section-title">衣服美化类</div>
   <div class="section-header">
     <button class="btn" onclick="addCard('clothes')">新建卡片</button>
@@ -87,65 +124,447 @@ P
 </div>
 
 <script>
+// 随机背景图列表
+const bgImages = [
+  "https://img.heliar.top/file/1774857777064_1766611081978.png",
+  "https://img.heliar.top/file/1774857771244_1766513606264.png",
+  "https://img.heliar.top/file/1774857765060_1773393845632.png"
+];
+
+// 页面加载时随机选一张背景
+window.addEventListener('load', () => {
+  const randomIndex = Math.floor(Math.random() * bgImages.length);
+  document.body.style.backgroundImage = `url('${bgImages[randomIndex]}')`;
+});
+
 const fileInput = document.getElementById('fileInput');
-fileInput.addEventListener('change', (e) => {
+
+// 上传文件/图片
+fileInput.addEventListener('change', e => {
   const files = e.target.files;
-  if(!files.length) return;
-  for(let f of files){
-    const url = URL.createObjectURL(f);
-    addCardWithFile(f.name, url);
+  if (!files.length) return;
+
+  for (let file of files) {
+    const url = URL.createObjectURL(file);
+    const card = `
+      <div class="card">
+        <div class="card-img">
+          <img src="${url}">
+        </div>
+        <div class="card-info">
+          <input class="card-name" type="text" value="${file.name}">
+          <div class="card-actions">
+            <button onclick="del(this)">删除</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById('ui').innerHTML += card;
   }
 });
 
-function 级-身份证{级-剧本#ffd6e0 0常量#f8bdbd0 100内部 HTML-超文本标记语言-函数-addCardWithFile（网址：you，url）-{="section-title">卡片 光标 = 级班级.图片源."${url}";}(. 风格. 宽度-高度封面级. 级班级{级{:1班级$-姓名-级级班级{}){
-  <按钮班级=“btn”onclick><h1>[改名（this）]> = 美食
-改名模
-按钮
-“btn”onclick班级
-“del（this）”
-删除
-按钮
-）.
+// 新建空白卡片
+function addCard(cateId) {
+  const card = `
+    <div class="card">
+      <div class="card-img">📦</div>
+      <div class="card-info">
+        <input class="card-name" type="text" placeholder="输入名称">
+        <div class="card-actions">
+          <button onclick="del(this)">删除</button>
+        </div>
       </div>
     </div>
-  </div>`;
-  <内部 HTML[HTML；函数重命名（El）-常量]=T“El”这个词在西班牙语中是冠-父母>父母<查询选择器>).<'. card-title'="card-grid" =）；>"const v=prompt('''story yosalemay'，T.innerText）"="ui"><如果（v）T
-内部文本
-
-<内部=超文本标记语言><!<!HTML；函数重命名（El）常量>>[T[El]这个词在西班牙语中是冠]父母<(父母].'. 查询选择器-'. card-title'').'）；"const v=prompt('''story yosalemay'，T.innerText）"<如果（v）T>){
-  <内部文本="section"><五；=改名模美食文档=HTML；函数重命名（El）=1.0-T>“El”这个词在西班牙语中是冠[父母]父母<查询选择器
-<'. card-title'="section-header">
-<）；
-<"const v=prompt('''story yosalemay'，T.innerText）"="card-grid" 如果（v）T="beautify"></div>
-<内部文本="section">
-<五；=改名模美食文档>文档类型声明=''这个词在西班牙语中是冠=-父母>父母</div>
-<查询选择器/这个词在西班牙语中是冠文档类型声明
-<标题父母{="btn"星露谷父母. 模查询选择器[内部文本
-      </div>
-    </div>
-  </div>`;
-五；
-五；
-
-五；
-[HTML；函数重命名（El）]T
-<[[El]这个词在西班牙语中是冠]这个词在西班牙语中是冠
-这个词在西班牙语中是冠
-父母父母
-
-显示
-你妈妈？你
-妈妈？％）<
-
-，：6％）；显示：你的高我的高我的高我的大我；：：：6
-你（）：12）；clearAll（）whoto0
-/你>
-  }
+  `;
+  document.getElementById(cateId).innerHTML += card;
 }
 
-*#youyou）；（）；clearAll（）4[大胆的显示马约托[]{你你]你<（“确定删除？”）=（“确定删除？”）=<按钮=[按钮]你=you]><[你>><<-；
-clearAll（）（<'you mayoto you mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou mayou？>>/级><exportData（）==[-]=[>，180,220,0.1}-[#8226]#8226#8226#8226#8226#8226#8226#8226#8226#8226[*{你
-[-]-[]-[]-[]-[]-[]-你{编者皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿皿/->是你}
-[发动机；电动机；马达{你 getElementById:0你-#8你发动机；电动机；马达---你-getElementById}]你{你a7#B39mayoto。getElementById）}mayoto你：20}]
+// 删除卡片
+function del(btn) {
+  if (confirm('确定删除？')) {
+    btn.closest('.card').remove();
+  }
+}
+</script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星露谷物语图鉴 - ee的小屋</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:"Microsoft Yahei",sans-serif;
+    background: no-repeat center center fixed;
+    background-size: cover;
+    min-height:100vh;color:#444;padding:20px;
+  }
+  .header{text-align:center;margin:30px 0}
+  .header h1{font-size:32px;color:#d8a7d1;margin-bottom:10px}
+  .header .subtitle{font-size:18px;color:#b39ddb;margin-bottom:20px}
+  .btn{
+    padding:8px 14px;background:#fff;
+    border:1px solid #f48fb1;color:#d8a7d1;
+    border-radius:10px;cursor:pointer;
+    margin:0 5px;font-size:14px;
+  }
+  .section{
+    background:rgba(255,255,255,0.85);
+    border-radius:16px;padding:20px;margin:20px 0;
+    box-shadow:0 4px 12px rgba(200,180,220,0.15)
+  }
+  .section-title{
+    font-size:17px;color:#d8a7d1;
+    margin-bottom:15px;padding-left:10px;
+    border-left:3px solid #f48fb1;
+  }
+  .section-header{
+    display:flex;justify-content:flex-end;gap:10px;
+    margin-bottom:15px;
+  }
+  .card-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:15px;margin-top:10px;
+  }
+  .card{
+    background:#fff;border-radius:12px;overflow:hidden;
+    box-shadow:0 2px 8px rgba(200,180,220,0.1);
+  }
+  .card-img{
+    height:140px;background:#fce4ec;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;color:#fff;
+  }
+  .card-img img{width:100%;height:100%;object-fit:cover}
+  .card-info{padding:12px}
+  .card-name{
+    font-size:14px;margin-bottom:10px;
+    padding:6px 8px;width:100%;
+    border:1px solid #eee;border-radius:6px;
+  }
+  .card-actions{
+    display:flex;gap:8px;
+  }
+  .card-actions button{
+    flex:1;padding:6px;border:none;
+    background:#fce4ec;color:#ad1457;
+    border-radius:6px;cursor:pointer;
+  }
+  #fileInput{display:none}
+</style>
+</head>
+
+<body>
+<div class="header">
+  <h1>✨ 星露谷物语图鉴 ✨</h1>
+  <p class="subtitle">ee的小屋</p>
+  <button class="btn" onclick="document.getElementById('fileInput').click()">上传文件/图片</button>
+  <input type="file" id="fileInput" multiple accept="*">
+</div>
+
+<div class="section">
+  <div class="section-title">UI 类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('ui')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="ui"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">光标工具类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('cursor')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="cursor"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">美化类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('beautify')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="beautify"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">NPC 类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('npc')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="npc"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">拓展剧情类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('story')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="story"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">衣服美化类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('clothes')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="clothes"></div>
+</div>
+
+<script>
+// 随机背景图列表
+const bgImages = [
+  "https://img.heliar.top/file/1774857777064_1766611081978.png",
+  "https://img.heliar.top/file/1774857771244_1766513606264.png",
+  "https://img.heliar.top/file/1774857765060_1773393845632.png"
+];
+
+// 页面加载时随机选一张背景
+window.addEventListener('load', () => {
+  const randomIndex = Math.floor(Math.random() * bgImages.length);
+  document.body.style.backgroundImage = `url('${bgImages[randomIndex]}')`;
+});
+
+const fileInput = document.getElementById('fileInput');
+
+// 上传文件/图片
+fileInput.addEventListener('change', e => {
+  const files = e.target.files;
+  if (!files.length) return;
+
+  for (let file of files) {
+    const url = URL.createObjectURL(file);
+    const card = `
+      <div class="card">
+        <div class="card-img">
+          <img src="${url}">
+        </div>
+        <div class="card-info">
+          <input class="card-name" type="text" value="${file.name}">
+          <div class="card-actions">
+            <button onclick="del(this)">删除</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById('ui').innerHTML += card;
+  }
+});
+
+// 新建空白卡片
+function addCard(cateId) {
+  const card = `
+    <div class="card">
+      <div class="card-img">📦</div>
+      <div class="card-info">
+        <input class="card-name" type="text" placeholder="输入名称">
+        <div class="card-actions">
+          <button onclick="del(this)">删除</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById(cateId).innerHTML += card;
+}
+
+// 删除卡片
+function del(btn) {
+  if (confirm('确定删除？')) {
+    btn.closest('.card').remove();
+  }
+}
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星露谷物语图鉴 - ee的小屋</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:"Microsoft Yahei",sans-serif;
+    background: no-repeat center center fixed;
+    background-size: cover;
+    min-height:100vh;color:#444;padding:20px;
+  }
+  .header{text-align:center;margin:30px 0}
+  .header h1{font-size:32px;color:#d8a7d1;margin-bottom:10px}
+  .header .subtitle{font-size:18px;color:#b39ddb;margin-bottom:20px}
+  .btn{
+    padding:8px 14px;background:#fff;
+    border:1px solid #f48fb1;color:#d8a7d1;
+    border-radius:10px;cursor:pointer;
+    margin:0 5px;font-size:14px;
+  }
+  .section{
+    background:rgba(255,255,255,0.85);
+    border-radius:16px;padding:20px;margin:20px 0;
+    box-shadow:0 4px 12px rgba(200,180,220,0.15)
+  }
+  .section-title{
+    font-size:17px;color:#d8a7d1;
+    margin-bottom:15px;padding-left:10px;
+    border-left:3px solid #f48fb1;
+  }
+  .section-header{
+    display:flex;justify-content:flex-end;gap:10px;
+    margin-bottom:15px;
+  }
+  .card-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:15px;margin-top:10px;
+  }
+  .card{
+    background:#fff;border-radius:12px;overflow:hidden;
+    box-shadow:0 2px 8px rgba(200,180,220,0.1);
+  }
+  .card-img{
+    height:140px;background:#fce4ec;
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;color:#fff;
+  }
+  .card-img img{width:100%;height:100%;object-fit:cover}
+  .card-info{padding:12px}
+  .card-name{
+    font-size:14px;margin-bottom:10px;
+    padding:6px 8px;width:100%;
+    border:1px solid #eee;border-radius:6px;
+  }
+  .card-actions{
+    display:flex;gap:8px;
+  }
+  .card-actions button{
+    flex:1;padding:6px;border:none;
+    background:#fce4ec;color:#ad1457;
+    border-radius:6px;cursor:pointer;
+  }
+  #fileInput{display:none}
+</style>
+</head>
+
+<body>
+<div class="header">
+  <h1>✨ 星露谷物语图鉴 ✨</h1>
+  <p class="subtitle">ee的小屋</p>
+  <button class="btn" onclick="document.getElementById('fileInput').click()">上传文件/图片</button>
+  <input type="file" id="fileInput" multiple accept="*">
+</div>
+
+<div class="section">
+  <div class="section-title">UI 类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('ui')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="ui"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">光标工具类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('cursor')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="cursor"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">美化类</div>
+  <div class="section-header">
+    <button class="btn" onclick="addCard('beautify')">新建卡片</button>
+  </div>
+  <div class="card-grid" id="beautify"></div>
+</款>
+
+<级 班级剧本="section">
+  <班级 身份证="section-title">//随机背景图列表-const bgImages=[.////you mayou mayou mayoto you mayou（'ui'）. window. addEventListener（'load'，（）=>{+=const random Index=Math</文档>
+  <身体 风格="section-header">
+    <背景 {统一资源定位系统“section-you header”>=“card-grid”<[类别]
+级“卡片”[班级身份证<div 级=[]>><[卡片-img]] 图片=源><[类别][类别][类别][类别][类别] 标题=">
+<级
+级
+
+级
+"></“del（this）”>
+文档身体风格
+    <背景 $=" 部分="
+</div>=[section]><删除图片
+"随机索引 常量=""</fileInput><12文档 getElementById /上传文件/you mayou fileInput=按钮></="card-info"><你 mayou 8E(200,180,220,0.1)>. E. mayou mayou mayou 8E(200,180,220,01)> 的="card-grid" 文件 常量=统一资源定位系统统一资源定位系统">. >创造文件常量
+卡片
+
+级<班级 “="card-info"><卡片<”<<<<级</班级>图片</${统一资源定位系统= 统一资源定位系统==你</'
+级/班级
+  <=输入
+    班级 类型="btn" 价值=“[${]}”《商周文献》（文件）《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周文献》《商周》《商周》《商周》《身体<超文本标记语言
+  <<div class="
+  <">衣服美化类
+<级
+
+<script>
+// 随机背景图列表
+const bgImages = [
+  "https://img.heliar.top/file/1774857777064_1766611081978.png",
+  "https://img.heliar.top/file/1774857771244_1766513606264.png",
+  "https://img.heliar.top/file/1774857765060_1773393845632.png"
+];
+
+// 页面加载时随机选一张背景
+window.<html lang="zh-CN">（此标签无需翻译，仅用于指定文档语言为简体中文）('load', () => {
+  <meta charset="UTF-8"> 该标签用于指定文档的字符编码为 UTF-8。 <meta name="viewport" content="宽度=device-width, 初始缩放比例=1.0"> = <title>星露谷物语图鉴-Lee yodo you</title>.字体-家族：“微软雅黑”，无衬线；(背景：无重复中心固定；.背景大小：覆盖；() * 标题{文本-对齐：居中；边距：30px 0}.标题h1{字体大小：32px；颜色：#d8a7d1；页边距-底部：10px});
+  标题{字体大小：18px；颜色：#b39ddb；页边距-底部：20px}.填充：8px 14px；背景：#fff；.边框：1px实心#f48fb1；颜色：#d8a7 d1；.页边距：50px；字体大小：14px； = `url('边界-半径：16px；填充：20px；边缘：20px 0；框-阴影：04px 12px rgba(200,180,220,0.15)[左边框：3px实心#f48fb1；]}')`;
+});
+
+框影：02px 8px rgba(200,180,220,0.1)； card-img img{宽度：100％；高度：100％；对象-适合：封面} = 衬垫：6px 8px；宽度：100％；.边框：1px实心#eee；边框-半径：6px；('fileInput');
+
+卡-动作按钮{
+<div class="标题">.<h1>星露谷物语图鉴>('change', <p class=“subtitle”>ee的小屋</p> => {
+  <button class="btn"onclick="document.getElementById（'fileInput'）. click（）">上传文件/上传文件/mayow</button> <input type="file" id="fileInput" multiple accept="*"> = <div class="section">.<div class=“section-title”>UI类</div>.<div class="section-header">;
+  <button class="btn"onclick="addCard('ui')">新建卡片</button> (!<div class="card-grid" id="ui"></div>.<div class="section">) <div class=“section-title”>光标工具类</div>;
+
+  <div class="section-header"> (<button class="btn"onclick="addCard（'cursor'）">新建卡片</button> <div class="card-grid" id="cursor"></div> <div class="section"> <div class=“section-title”><div class="section-header"><<button class="btn"onclick="addCard('ui')">新建卡片</button>
+    <<div class="card-grid" id="ui"></div>="section-header"<div class="section">="btn"<div class=“section-title”>光标工具类</div>
+    <<div class="section-header">="section-header"<button class="btn"onclick="addCard（'cursor'）">新建卡片</button>="btn"<div class="card-grid" id="cursor"></div>=<div class="section">{><div class=“section-title”>美化类</div><<div class="section-header">
+<<button class="btn"onclick="addCard（'beautify'）">背景：无重复中心固定；字体级家族：“微软雅黑”，无衬线；级班级E"npc"<button class="btn"onclick="document.getElementById('fileInput'). click（）">上传文件/上传文件/mayow/mayow</button>标题 h1<Input type=“volmaymous”file=“fileInput”multiple accept=“section”><div class=“section”><div class=“section-title”>UI类</div><div class=“section-heads”><button class=“button”=“addCard”（'UI'）><div class=“class”>>>“class=“class-class”>“class”>“class”>“class”“class”“class”“class”“class”
+-title]>美化类<button class=“button”onclick="addCard（“美化”）">>addCard（“美化”）">NPC</button><div class="Card-grand"id="beautify"></div><div class="section"><div class="><div class="<addCard（“NPC”）><button><班级<输入“del（this）”><[类别]>>>“div class="class-class-class="class-class="/class="card-grid" id="story"></div>="card-actions">>=<<<>>+=文档=“you btn”getElementById="you black black HTML（'story'）">"///="card-img">.</div>}" 函数 addCard（cateId）="section"></<<你卡片卡片-com]<）{ 班级/you mayou mayou fileInput=></=“card-info”> 你="section-header">><=“卡片”>=“card-img”>函数="">="btn"常量="卡片'wholes'[<"）}>$">新建卡片</级>）点击（）[你 mayou”="card-grid" 级班级="clothes"></div>/ // 随机背景图列表</班级> 类型/"${url}">=[story]> = [-// 级班级>window.addEventListener('load', () => {const randomIndex = Math.floor(Math.random() * bgImages.length); = `<<（<
+卡片
+        </div>
+<<<级班级班级身份证mayoto））.document.getElementById级
+=></<<班级>[卡片-gt]
+bgImages页面加载时随机选一张背景文档
+=broyoblu>HTML)；mayoto
+=[文本]
+        </div>
+      </div>
+    `;
+函数 addCard（cateId）
+  }
+});
+
+输入<</
+班级
+“卡片”<>document.getElementById(cateId)
+级级班级<源常量
+（
+[卡片-999]尤洛
+/卡片>="Card-mayoto-img">innerHTML+=mayoodCard(cateId){=mayoto>班级“卡片”/新建空白卡片我想
+=>“卡片”>级
+班级
+        </div>
+      </div>
+    </div>
+  `;
+<[*<班级]
+}
+
+=级按钮del（此）<<“输入名称”
+[按钮]
+addCard
+=[按钮（班级级
+'ui'）.++=you brookyou；；；=getElementById>>cateId</>内部
+}
+// 删除卡片
+卡片级级班级
+身体超文本标记语言=====================================================================================================================================================================================================>=getelementbyvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvolemakvole
