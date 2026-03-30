@@ -3,264 +3,267 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>eeの小屋 - 星露谷物语图鉴</title>
+<title>Stardew MOD 图鉴 - eeの小屋</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{
     font-family:"Microsoft Yahei",sans-serif;
-    background:url("https://img.heliar.top/file/1774857765060_1773393845632.png") no-repeat center center fixed;
+    /* 背景图 */
+    background:url('https://img.heliar.top/file/1774857765060_1773393845632.png') no-repeat center center fixed;
     background-size:cover;
     min-height:100vh;
     padding:20px;
-    color:#333;
   }
 
-  .header{
-    text-align:center;
-    margin:20px 0 30px;
-  }
-  .header h1{
-    font-size:30px;
-    color:#d887b1;
-  }
-  .header .desc{
-    font-size:16px;
-    color:#b387c1;
-    margin:8px 0 16px;
-  }
-  .header button{
-    padding:8px 16px;
-    background:#fff;
-    border:1px solid #e1b7d1;
-    border-radius:10px;
-    color:#c377a1;
-    cursor:pointer;
-    margin:0 4px;
-  }
+  .header{text-align:center;margin:20px 0;color:#d887b1}
+  .header h1{font-size:32px;margin-bottom:5px}
+  .header p{color:#b387c1;font-size:18px}
 
   .section{
     background:rgba(255,255,255,0.85);
-    border-radius:14px;
-    padding:18px;
-    margin-bottom:20px;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:25px;
   }
   .section-title{
-    font-size:16px;
+    font-size:17px;
     color:#c377a1;
     margin-bottom:12px;
-    padding-left:8px;
-    border-left:3px solid #f2a7c1;
+    padding-left:10px;
+    border-left:4px solid #f2a7c1;
   }
-  .section-bar{
+
+  /* 分类顶部操作栏 */
+  .controls{
     display:flex;
     justify-content:flex-end;
-    gap:8px;
-    margin-bottom:12px;
+    gap:10px;
+    margin-bottom:15px;
   }
-  .section-bar button{
-    padding:5px 10px;
+  .controls button{
+    padding:6px 12px;
     background:#fff;
     border:1px solid #e1b7d1;
     border-radius:8px;
-    font-size:12px;
     color:#c377a1;
     cursor:pointer;
+    font-size:13px;
   }
 
+  /* 网格：一行 5 个 */
   .grid{
     display:grid;
     grid-template-columns:repeat(5,1fr);
     gap:12px;
   }
 
+  /* 卡片样式 */
   .card{
     background:#fff;
-    border-radius:10px;
+    border-radius:12px;
     overflow:hidden;
-    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
   }
+
+  /* 图片区域 */
   .card-img{
-    height:130px;
+    height:140px;
     background:#fce4ec;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     cursor:pointer;
+    position:relative;
   }
   .card-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
+    width:100%;height:100%;object-fit:cover;display:block;
   }
+  .card-img .overlay{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.2);display:none;align-items:center;justify-content:center;color:#fff;font-size:14px
+  }
+  .card-img:hover .overlay{display:flex}
+
+  /* 文字 */
   .card-name{
-    padding:8px;
+    padding:10px;
     text-align:center;
-    font-size:13px;
+    font-size:14px;
+    color:#555;
+    background:#fdf2f8;
   }
+
+  /* 按钮组 */
   .card-actions{
     display:flex;
-    gap:6px;
-    padding:0 6px 8px;
+    gap:8px;
+    padding:8px;
   }
   .card-actions button{
     flex:1;
-    padding:5px;
+    padding:6px;
     border:none;
-    background:#fce4ec;
-    color:#ad1457;
     border-radius:6px;
-    font-size:12px;
     cursor:pointer;
+    font-size:12px;
   }
+  .btn-edit{background:#fce4ec;color:#ad1457}
+  .btn-del{background:#f8bbd0;color:#c2185b}
 
-  .hide{display:none}
+  /* 隐藏上传框 */
+  #imgPicker,#filePicker{display:none}
 </style>
 </head>
 
 <body>
 
 <div class="header">
-  <h1>✧ 星露谷物语图鉴 ✧</h1>
-  <div class="desc">eeの小屋</div>
-  <button onclick="addNewItem()">添加项目（图+文件）</button>
+  <h1>✧ Stardew Valley MOD 图鉴 ✧</h1>
+  <p>♡ eeの小屋 ♡</p>
 </div>
 
-<!-- 6个分类 -->
+<!-- 隐藏的上传控件 -->
+<input type="file" id="imgPicker" accept="image/*">
+<input type="file" id="filePicker">
+
+<!-- 分类 1 -->
 <div class="section">
   <div class="section-title">UI 类</div>
-  <div class="section-bar">
-    <button onclick="addUi()">新建卡片</button>
+  <div class="controls">
+    <button onclick="addNewCard('ui')">新建卡片</button>
   </div>
-  <div class="grid" id="list-ui"></div>
+  <div class="grid" id="container-ui"></div>
 </div>
 
+<!-- 分类 2 -->
 <div class="section">
   <div class="section-title">光标工具类</div>
-  <div class="section-bar">
-    <button onclick="addCursor()">新建卡片</button>
+  <div class="controls">
+    <button onclick="addNewCard('cursor')">新建卡片</button>
   </div>
-  <div class="grid" id="list-cursor"></div>
+  <div class="grid" id="container-cursor"></div>
 </div>
 
+<!-- 分类 3 -->
 <div class="section">
   <div class="section-title">美化类</div>
-  <div class="section-bar">
-    <button onclick="addBeautify()">新建卡片</button>
+  <div class="controls">
+    <button onclick="addNewCard('beautify')">新建卡片</button>
   </div>
-  <div class="grid" id="list-beautify"></div>
+  <div class="grid" id="container-beautify"></div>
 </div>
 
+<!-- 分类 4 -->
 <div class="section">
   <div class="section-title">NPC 类</div>
-  <div class="section-bar">
-    <button onclick="addNpc()">新建卡片</button>
+  <div class="controls">
+    <button onclick="addNewCard('npc')">新建卡片</button>
   </div>
-  <div class="grid" id="list-npc"></div>
+  <div class="grid" id="container-npc"></div>
 </div>
 
+<!-- 分类 5 -->
 <div class="section">
   <div class="section-title">拓展剧情类</div>
-  <div class="section-bar">
-    <button onclick="addStory()">新建卡片</button>
+  <div class="controls">
+    <button onclick="addNewCard('story')">新建卡片</button>
   </div>
-  <div class="grid" id="list-story"></div>
+  <div class="grid" id="container-story"></div>
 </div>
 
+<!-- 分类 6 -->
 <div class="section">
   <div class="section-title">衣服美化类</div>
-  <div class="section-bar">
-    <button onclick="addClothes()">新建卡片</button>
+  <div class="controls">
+    <button onclick="addNewCard('clothes')">新建卡片</button>
   </div>
-  <div class="grid" id="list-clothes"></div>
+  <div class="grid" id="container-clothes"></div>
 </div>
 
-<!-- 临时上传 -->
-<input type="file" id="pickImg" class="hide" accept="image/*">
-<input type="file" id="pickFile" class="hide">
-
 <script>
+// 全局变量记录当前正在操作的卡片
 let currentCard = null;
+let currentFileType = null;
 
-// 新建项目：先选图，再选文件
-function addNewItem() {
-  document.getElementById('pickImg').onchange = function() {
-    const imgFile = this.files[0];
-    if (!imgFile) return;
-    const imgUrl = URL.createObjectURL(imgFile);
-
-    document.getElementById('pickFile').onchange = function() {
-      const modFile = this.files[0];
-      if (!modFile) return;
-      const fileUrl = URL.createObjectURL(modFile);
-
-      const card = `
-      <div class="card">
-        <div class="card-img" onclick="window.open('${fileUrl}')">
-          <img src="${imgUrl}">
-        </div>
-        <div class="card-name">${modFile.name}</div>
-        <div class="card-actions">
-          <button onclick="edit(this)">编辑</button>
-          <button onclick="del(this)">删除</button>
-        </div>
-      </div>`;
-
-      document.getElementById('list-ui').innerHTML += card;
-    };
-    document.getElementById('pickFile').click();
-  };
-  document.getElementById('pickImg').click();
-}
-
-// 空白卡片
-function addUi()    { addEmpty('list-ui') }
-function addCursor(){ addEmpty('list-cursor') }
-function addBeautify(){ addEmpty('list-beautify') }
-function addNpc()  { addEmpty('list-npc') }
-function addStory(){ addEmpty('list-story') }
-function addClothes(){ addEmpty('list-clothes') }
-
-function addEmpty(id) {
-  const card = `
-  <div class="card">
-    <div class="card-img" onclick="bindFile(this)">📦</div>
-    <div class="card-name">未命名</div>
-    <div class="card-actions">
-      <button onclick="edit(this)">编辑</button>
-      <button onclick="del(this)">删除</button>
+// 👇 核心功能 1：新建格子
+function addNewCard(categoryId) {
+  // 创建卡片 HTML
+  const cardHtml = `
+    <div class="card">
+      <div class="card-img" onclick="triggerImageSelect(this)">
+        <span>📷 点我配图</span>
+        <div class="overlay">更换图片</div>
+      </div>
+      <div class="card-name">未命名项目</div>
+      <div class="card-actions">
+        <button class="btn-edit" onclick="triggerFileSelect(this)">编辑</button>
+        <button class="btn-del" onclick="deleteCard(this)">删除</button>
+      </div>
     </div>
-  </div>`;
-  document.getElementById(id).innerHTML += card;
+  `;
+  
+  // 添加到对应分类
+  document.getElementById(`container-${categoryId}`).innerHTML += cardHtml;
 }
 
-// 绑定图+文件
-function bindFile(imgEl) {
-  currentCard = imgEl.closest('.card');
-  document.getElementById('pickImg').onchange = function() {
-    const f = this.files[0];
-    if (!f) return;
-    imgEl.innerHTML = `<img src="${URL.createObjectURL(f)}">`;
+// 👇 核心功能 2：点图片换图
+function triggerImageSelect(imgElement) {
+  currentCard = imgElement.closest('.card');
+  document.getElementById('imgPicker').click();
+}
 
-    document.getElementById('pickFile').onchange = function() {
-      const mf = this.files[0];
-      if (!mf) return;
-      const fu = URL.createObjectURL(mf);
-      imgEl.setAttribute("onclick", `window.open('${fu}')`);
-      currentCard.querySelector('.card-name').innerText = mf.name;
-    };
-    document.getElementById('pickFile').click();
+// 👇 核心功能 3：点编辑换文件
+function triggerFileSelect(btnElement) {
+  currentCard = btnElement.closest('.card');
+  document.getElementById('filePicker').click();
+}
+
+// 👇 核心功能 4：删除
+function deleteCard(btnElement) {
+  if (confirm('确定要删除这个项目吗？')) {
+    btnElement.closest('.card').remove();
+  }
+}
+
+// 👇 监听图片选择
+document.getElementById('imgPicker').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  // 生成临时 URL
+  const imgUrl = URL.createObjectURL(file);
+  
+  // 设置到当前卡片
+  const imgEl = currentCard.querySelector('.card-img');
+  imgEl.innerHTML = `<img src="${imgUrl}">`;
+});
+
+// 👇 监听文件选择
+document.getElementById('filePicker').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  
+  // 生成文件 URL
+  const fileUrl = URL.createObjectURL(file);
+  
+  // 设置文件名
+  const nameEl = currentCard.querySelector('.card-name');
+  nameEl.innerText = file.name;
+
+  // 设置点击事件 = 下载文件
+  const imgEl = currentCard.querySelector('.card-img');
+  imgEl.onclick = function() {
+    const a = document.createElement('a');
+    a.href = fileUrl;
+    a.download = file.name; // 下载文件名
+    a.click();
   };
-  document.getElementById('pickImg').click();
-}
-
-function edit(btn) {
-  const nameEl = btn.closest('.card').querySelector('.card-name');
-  const t = prompt('修改名称', nameEl.innerText);
-  if (t) nameEl.innerText = t;
-}
-
-function del(btn) {
-  if (confirm('删除？')) btn.closest('.card').remove();
-}
+  
+  // 移除 hover 提示文字
+  imgEl.querySelector('.overlay')?.remove();
+});
 </script>
 
 </body>
 </html>
+
