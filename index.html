@@ -1,279 +1,241 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>eeの小屋 - 星露谷模组合集</title>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    font-family:"Microsoft Yahei",sans-serif;
-    background:url("https://img.heliar.top/file/1774857765060_1773393845632.png") no-repeat center center fixed;
-    background-size:cover;
-    min-height:100vh;
-    padding:15px;
-    color:#333;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>eeの小屋 · 星露谷模组合集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* 避免拖拽图片误触，不影响文字选择 */
+        }
 
-  /* 顶部导航 */
-  .top-bar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-  }
-  .top-bar h1{
-    font-size:22px;
-    color:#d887b1;
-    text-shadow:0 0 4px rgba(255,255,255,0.5);
-  }
-  .top-bar button{
-    padding:8px 12px;
-    background:#fff;
-    border:1px solid #e1b7d1;
-    border-radius:8px;
-    color:#c377a1;
-    cursor:pointer;
-    font-size:12px;
-  }
+        body {
+            font-family: 'Segoe UI', 'Poppins', 'Microsoft YaHei', sans-serif;
+            background: url("https://img.heliar.top/file/1774857765060_1773393845632.png") no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c2c2c;
+        }
 
-  /* 分类标题 */
-  .category-title{
-    font-size:16px;
-    color:#c377a1;
-    margin:15px 0 10px 5px;
-    padding-left:5px;
-    border-left:3px solid #f2a7c1;
-  }
+        /* 主容器 - 毛玻璃效果 */
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 248, 245, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 24px 28px;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
 
-  /* 网格：一排 5 个（和截图一样） */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    margin-bottom:25px;
-  }
+        /* 顶部栏 */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(210, 140, 170, 0.5);
+        }
+        .site-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #b95f8a, #e8a5c2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+        }
+        .top-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .top-btn {
+            background: rgba(255, 240, 245, 0.9);
+            border: 1px solid #dcb0c5;
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #b14e7a;
+            cursor: pointer;
+            transition: 0.2s;
+            backdrop-filter: blur(2px);
+        }
+        .top-btn:hover {
+            background: #f6cfdf;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
 
-  /* 卡片样式（模仿你给的APP截图） */
-  .mod-card{
-    background:#fff;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-    cursor:pointer;
-    transition:transform 0.2s;
-  }
-  .mod-card:hover{transform:scale(1.02)}
+        /* 分类卡片区域 */
+        .category-section {
+            margin-bottom: 32px;
+        }
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 20px 0 12px 0;
+            padding-left: 8px;
+            border-left: 5px solid #f2a7c1;
+        }
+        .category-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #b75282;
+            text-shadow: 1px 1px 0 rgba(255,255,200,0.6);
+        }
+        .new-card-btn {
+            background: #f5dfe8;
+            border: none;
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #a1426b;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .new-card-btn:hover {
+            background: #efc8d8;
+            transform: scale(0.96);
+        }
 
-  .card-img{
-    height:130px;
-    background:#fce4ec;
-  }
-  .card-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-  /* 移除了 .card-name 区域，卡片下方不再显示文字 */
+        /* 网格布局：一排5个，自适应 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 18px;
+        }
 
-  /* 详情页容器（默认隐藏） */
-  #detail-page{
-    display:none;
-    background:#fff;
-    border-radius:16px;
-    padding:20px;
-    margin-top:20px;
-    box-shadow:0 4px 16px rgba(0,0,0,0.15);
-  }
-  .detail-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-    padding-bottom:10px;
-    border-bottom:1px solid #f8bbd0;
-  }
-  .detail-header h2{color:#d887b1;font-size:18px}
-  .detail-header button{
-    padding:6px 10px;
-    background:#f8bbd0;
-    border:none;
-    border-radius:6px;
-    color:#c2185b;
-    cursor:pointer;
-  }
+        /* 卡片样式（精致圆角，半透背景） */
+        .mod-card {
+            background: rgba(255, 250, 245, 0.9);
+            backdrop-filter: blur(2px);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.25s ease;
+            border: 1px solid rgba(245, 185, 205, 0.6);
+            position: relative;
+        }
+        .mod-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+            border-color: #e6a7c2;
+        }
 
-  /* 详情内的文件列表区域 */
-  .files-list{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:12px;
-    margin-bottom:15px;
-    max-height: 400px;
-    overflow-y: auto;
-  }
-  .file-item{
-    display:flex;
-    align-items:center;
-    padding:12px;
-    background:#fdf2f8;
-    border-radius:10px;
-    border:1px solid #f8bbd0;
-    justify-content: space-between;
-  }
-  .file-name{
-    flex:1;
-    font-size:13px;
-    color:#c377a1;
-    word-break: break-all;
-  }
-  .file-actions button{
-    margin-left:8px;
-    padding:4px 10px;
-    background:#fff;
-    border:1px solid #e1b7d1;
-    border-radius:6px;
-    color:#c377a1;
-    cursor:pointer;
-    font-size:12px;
-  }
-  .add-file-btn{
-    margin-top:15px;
-    padding:8px;
-    background:#fce4ec;
-    border:none;
-    border-radius:6px;
-    color:#ad1457;
-    cursor:pointer;
-    width:100%;
-  }
-  .empty-files{
-    text-align:center;
-    color:#c377a1;
-    padding:20px;
-  }
+        /* 图片区域 */
+        .card-img {
+            height: 150px;
+            background: #f8e3ed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .card-img:hover img {
+            transform: scale(1.02);
+        }
 
-  /* 隐藏上传 */
-  #img-picker, #file-picker{display:none}
-</style>
-</head>
+        /* 卡片文字区域 */
+        .card-info {
+            padding: 10px 12px 12px;
+            background: rgba(255, 248, 243, 0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f5d5e4;
+        }
+        .card-title {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #834c6a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
+        }
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .card-actions button {
+            background: none;
+            border: none;
+            font-size: 0.7rem;
+            color: #ad7a96;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 20px;
+            transition: 0.1s;
+        }
+        .card-actions button:hover {
+            background: #f5cfdf;
+            color: #b13f6e;
+        }
 
-<body>
-
-<!-- 列表页面 -->
-<div id="list-page">
-  <div class="top-bar">
-    <h1>✧ 星露谷模组合集 ✧</h1>
-    <button onclick="addNewCategory()">新建分类</button>
-  </div>
-
-  <!-- 分类：UI 类 -->
-  <div class="category-title">UI 类</div>
-  <div class="grid" id="cat-ui"></div>
-
-  <!-- 分类：光标工具类 -->
-  <div class="category-title">光标工具类</div>
-  <div class="grid" id="cat-cursor"></div>
-
-  <!-- 分类：美化类 -->
-  <div class="category-title">美化类</div>
-  <div class="grid" id="cat-beautify"></div>
-
-  <!-- 分类：NPC 类 -->
-  <div class="category-title">NPC 类</div>
-  <div class="grid" id="cat-npc"></div>
-
-  <!-- 分类：拓展剧情类 -->
-  <div class="category-title">拓展剧情类</div>
-  <div class="grid" id="cat-story"></div>
-
-  <!-- 分类：衣服美化类 -->
-  <div class="category-title">衣服美化类</div>
-  <div class="grid" id="cat-clothes"></div>
-</div>
-
-<!-- 详情页面 -->
-<div id="detail-page">
-  <div class="detail-header">
-    <h2 id="detail-title">项目详情</h2>
-    <button onclick="showList()">返回</button>
-  </div>
-  <div id="file-list-container" class="files-list"></div>
-  <button class="add-file-btn" onclick="addFileToCurrentCard()">+ 添加文件</button>
-  <button class="add-file-btn" style="margin-top:8px; background:#f8bbd0;" onclick="replaceCardImage()">🖼️ 更换封面图</button>
-</div>
-
-<!-- 隐藏控件 -->
-<input type="file" id="img-picker" accept="image/*">
-<input type="file" id="file-picker" multiple>
-
-<script>
-// ======================= 数据结构 =======================
-// 全局存储: { categoryId: [ 卡片对象 ] }
-// 卡片对象: { id, imageBase64, files: [ { name, base64, type } ] }
-let appData = {};
-
-// 当前正在编辑的卡片
-let currentDetailCard = null;      // DOM 元素
-let currentCardId = null;          // 卡片ID
-let currentCategoryId = null;      // 所属分类
-
-// 初始化默认分类
-const categories = ['ui', 'cursor', 'beautify', 'npc', 'story', 'clothes'];
-categories.forEach(cat => {
-  if (!appData[cat]) appData[cat] = [];
-});
-
-// ======================= 加载/保存 localStorage =======================
-function saveToLocalStorage() {
-  localStorage.setItem('mod_multi_data', JSON.stringify(appData));
-}
-
-function loadFromLocalStorage() {
-  const stored = localStorage.getItem('mod_multi_data');
-  if (stored) {
-    try {
-      const parsed = JSON.parse(stored);
-      // 确保每个分类都有数组
-      categories.forEach(cat => {
-        if (!parsed[cat]) parsed[cat] = [];
-      });
-      appData = parsed;
-    } catch(e) { console.warn(e); initDefaultData(); }
-  } else {
-    initDefaultData();
-  }
-  // 渲染所有分类
-  renderAllCategories();
-}
-
-// 默认示例数据（苹果卡片带两个示例文件）
-function initDefaultData() {
-  const demoAppleImg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23fde047'/%3E%3Ctext x='50' y='70' font-size='52' text-anchor='middle' fill='%23b45309'%3E🍎%3C/text%3E%3C/svg%3E";
-  const exampleFile1 = "data:text/plain;base64,VGhpcyBpcyBhbiBleGFtcGxlIE1PRCBmaWxlIDEu";
-  const exampleFile2 = "data:text/plain;base64,U2Vjb25kIGV4YW1wbGUgZmlsZSBmb3IgZGVtby4=";
-  appData.beautify.push({
-    id: 'demo_' + Date.now(),
-    imageBase64: demoAppleImg,
-    files: [
-      { name: '说明文档.txt', base64: exampleFile1, type: 'text/plain' },
-      { name: '贴图包示例.txt', base64: exampleFile2, type: 'text/plain' }
-    ]
-  });
-  saveToLocalStorage();
-}
-
-// ======================= 渲染所有分类 =======================
-function renderAllCategories() {
-  for (let cat of categories) {
-    const grid = document.getElementById(`cat-${cat}`);
-    if (!grid) continue;
-    const cards = appData[cat] || [];
-    grid.innerHTML = '';
-    cards.forEach(card => {
-      const cardDiv = document.createElement('div');
-      cardDiv.className = 'mod-card';
-      cardDiv.setAttribute('data-id', card.id);
-      cardDiv.setAttribute('data-cat', cat);
-      const imgSrc = card.imageBase64 || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="1
+        /* 详情弹窗 (现代化) */
+        .detail-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .detail-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .detail-card {
+            background: #fffbf7;
+            width: 90%;
+            max-width: 650px;
+            max-height: 85vh;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        .detail-header {
+            padding: 16px 20px;
+            background: #fdebf3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f3c1d6;
+        }
+        .detail-header h3 {
+            font-size: 1.3rem;
+            color: #b64c7a;
+        }
+        .close-detail {
+            back
