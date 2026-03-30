@@ -2,280 +2,847 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>eeの小屋 - 星露谷模组合集</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>星露谷模组合集 · eeの小屋</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    font-family:"Microsoft Yahei",sans-serif;
-    background:url("https://img.heliar.top/file/1774857765060_1773393845632.png") no-repeat center center fixed;
-    background-size:cover;
-    min-height:100vh;
-    padding:15px;
-    color:#333;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  /* 顶部导航 */
-  .top-bar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-  }
-  .top-bar h1{
-    font-size:22px;
-    color:#d887b1;
-    text-shadow:0 0 4px rgba(255,255,255,0.5);
-  }
-  .top-bar button{
-    padding:8px 12px;
-    background:#fff;
-    border:1px solid #e1b7d1;
-    border-radius:8px;
-    color:#c377a1;
-    cursor:pointer;
-    font-size:12px;
+  body {
+    font-family: "Microsoft Yahei", "PingFang SC", "Helvetica Neue", Roboto, sans-serif;
+    background: url('https://img.heliar.top/file/1774857765060_1773393845632.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 20px;
+    color: #4a2e3a;
   }
 
-  /* 分类标题 */
-  .category-title{
-    font-size:16px;
-    color:#c377a1;
-    margin:15px 0 10px 5px;
-    padding-left:5px;
-    border-left:3px solid #f2a7c1;
+  /* 主容器 */
+  .app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 245, 250, 0.92);
+    border-radius: 32px;
+    padding: 24px 20px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
 
-  /* 网格：一排 5 个（和截图一样） */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-    margin-bottom:25px;
+  /* 头部 */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+    gap: 15px;
+  }
+  .title-section h1 {
+    font-size: 28px;
+    color: #d887b1;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
+  }
+  .title-section p {
+    color: #b38b9e;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  .header-actions {
+    display: flex;
+    gap: 12px;
+  }
+  .header-actions button {
+    background: #fff0f5;
+    border: 1px solid #f3c6de;
+    padding: 8px 16px;
+    border-radius: 40px;
+    color: #c377a1;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .header-actions button:hover {
+    background: #ffe4f0;
+    border-color: #d887b1;
+    transform: translateY(-1px);
   }
 
-  /* 卡片样式（模仿你给的APP截图） */
-  .mod-card{
-    background:#fff;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-    cursor:pointer;
-    transition:transform 0.2s;
+  /* 搜索栏 */
+  .search-bar {
+    margin-bottom: 28px;
   }
-  .mod- card:hover{transform:scale(1.02)}
-
-  .card-img{
-    height:130px;
-    background:#fce4ec;
+  .search-bar input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 1px solid #f3c6de;
+    border-radius: 50px;
+    background: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s;
+    color: #4a2e3a;
   }
-  .card-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
-  .card-name{
-    padding:8px;
-    text-align:center;
-    font-size:13px;
-    color:#555;
-    background:#fdf2f8;
+  .search-bar input:focus {
+    border-color: #d887b1;
+    box-shadow: 0 0 0 3px rgba(216,135,177,0.2);
   }
 
-  /* 详情页容器（默认隐藏） */
-  #detail-page{
-    display:none;
-    background:#fff;
-    border-radius:16px;
-    padding:20px;
-    margin-top:20px;
-    box-shadow:0 4px 16px rgba(0,0,0,0.15);
+  /* 分类区域 */
+  .category-section {
+    margin-bottom: 35px;
   }
-  .detail-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-    padding-bottom:10px;
-    border-bottom:1px solid #f8bbd0;
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
   }
-  .detail-header h2{color:#d887b1;font-size:18px}
-  .detail-header button{
-    padding:6px 10px;
-    background:#f8bbd0;
-    border:none;
-    border-radius:6px;
-    color:#c2185b;
-    cursor:pointer;
+  .category-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #c377a1;
+    background: rgba(255,240,245,0.8);
+    padding: 5px 15px;
+    border-radius: 30px;
+    display: inline-block;
+    backdrop-filter: blur(2px);
   }
-
-  /* 详情内的链接格子 */
-  .link-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:12px;
+  .category-actions {
+    display: flex;
+    gap: 8px;
   }
-  .link-item{
-    display:flex;
-    align-items:center;
-    padding:12px;
-    background:#fdf2f8;
-    border-radius:10px;
-    border:1px solid #f8bbd0;
+  .category-actions button {
+    background: transparent;
+    border: none;
+    color: #b38b9e;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 20px;
+    transition: 0.2s;
   }
-  .link-item input{
-    flex:1;
-    padding:8px;
-    border:1px solid #e1b7d1;
-    border-radius:6px;
-    margin-right:10px;
-    font-size:13px;
-  }
-  .link-item button{
-    padding:6px 10px;
-    background:#fff;
-    border:1px solid #e1b7d1;
-    border-radius:6px;
-    color:#c377a1;
-    cursor:pointer;
-    font-size:12px;
+  .category-actions button:hover {
+    background: #ffe4f0;
+    color: #c2185b;
   }
 
-  /* 隐藏上传 */
-  #img-picker, #file-picker{display:none}
+  /* 网格布局 - 自适应卡片 */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+  }
+  @media (min-width: 1000px) {
+    .grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  /* 卡片样式 */
+  .mod-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .mod-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  }
+  .card-img {
+    height: 160px;
+    background: #f9e6ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  .mod-card:hover .card-img img {
+    transform: scale(1.02);
+  }
+  .card-img .placeholder {
+    font-size: 32px;
+    color: #d887b1;
+  }
+  .card-name {
+    padding: 12px 10px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    color: #4a2e3a;
+    background: #fffafc;
+    border-top: 1px solid #f9e0ed;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(216,135,177,0.9);
+    color: white;
+    border-radius: 30px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    backdrop-filter: blur(2px);
+  }
+
+  /* 模态框（卡片详情） */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+  }
+  .modal-content {
+    background: #fffef7;
+    border-radius: 32px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f9e0ed;
+  }
+  .modal-header h3 {
+    font-size: 22px;
+    color: #d887b1;
+  }
+  .modal-header button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #b38b9e;
+  }
+  .modal-field {
+    margin-bottom: 20px;
+  }
+  .modal-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #c377a1;
+  }
+  .modal-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f3c6de;
+    border-radius: 16px;
+    font-size: 14px;
+  }
+  .file-list {
+    background: #fef5f9;
+    border-radius: 20px;
+    padding: 12px;
+    margin: 15px 0;
+  }
+  .file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 40px;
+    margin-bottom: 8px;
+    border: 1px solid #f3c6de;
+  }
+  .file-item span {
+    flex: 1;
+    font-size: 13px;
+    word-break: break-all;
+  }
+  .file-item a {
+    color: #c377a1;
+    text-decoration: none;
+    margin-right: 12px;
+    font-size: 13px;
+  }
+  .file-item button {
+    background: none;
+    border: none;
+    color: #c2185b;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .add-file-btn {
+    background: #fce4ec;
+    border: 1px dashed #d887b1;
+    border-radius: 40px;
+    padding: 8px;
+    width: 100%;
+    text-align: center;
+    color: #ad1457;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: 0.2s;
+  }
+  .add-file-btn:hover {
+    background: #ffe0f0;
+  }
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .modal-footer button {
+    padding: 8px 18px;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .btn-save {
+    background: #d887b1;
+    color: white;
+  }
+  .btn-delete-card {
+    background: #f8bbd0;
+    color: #ad1457;
+  }
+
+  /* 隐藏文件上传控件 */
+  .hidden-input {
+    display: none;
+  }
+
+  /* 空状态 */
+  .empty-message {
+   text-align: center;
+    padding: 40px;
+    color: #b38b9e;
+    font-size: 14px;
+  }
+
+  /* 小提示 */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4a2e3a;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 1100;
+  }
 </style>
 </head>
-
 <body>
-
-<!-- 列表页面 -->
-<div id="list-page">
-  <div class="top-bar">
-    <h1>✧ 星露谷模组合集 ✧</h1>
-    <button onclick="addNewCategory()">新建分类</button>
+<div class="app-container">
+  <div class="header">
+    <div class="title-section">
+      <h1>✧ 星露谷模组合集 ✧</h1>
+      <p>eeの小屋 · 收集每一份热爱</p>
+    </div>
+    <div class="header-actions">
+      <button onclick="exportData()">📦 导出备份</button>
+      <button onclick="importData()">📂 导入备份</button>
+      <button onclick="addNewCategory()">✨ 新建分类</button>
+    </div>
   </div>
 
-  <!-- 分类：UI 类 -->
-  <div class="category-title">UI 类</div>
-  <div class="grid" id="cat-ui"></div>
-
-  <!-- 分类：光标工具类 -->
-  <div class="category-title">光标工具类</div>
-  <div class="grid" id="cat-cursor"></div>
-
-  <!-- 分类：美化类 -->
-  <div class="category-title">美化类</div>
-  <div class="grid" id="cat-beautify"></div>
-
-  <!-- 分类：NPC 类 -->
-  <div class="category-title">NPC 类</div>
-  <div class="grid" id="cat-npc"></div>
-
-  <!-- 分类：拓展剧情类 -->
-  <div class="category-title">拓展剧情类</div>
-  <div class="grid" id="cat-story"></div>
-
-  <!-- 分类：衣服美化类 -->
-  <div class="category-title">衣服美化类</div>
-  <div class="grid" id="cat-clothes"></div>
-</div>
-
-<!-- 详情页面 -->
-<div id="detail-page">
-  <div class="detail-header">
-    <h2 id="detail-title">项目详情</h2>
-    <button onclick="showList()">返回</button>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="🔍 搜索模组名称..." oninput="filterCards()">
   </div>
-  <div class="link-grid" id="link-container"></div>
-  <button style="margin-top:15px;padding:8px;background:#fce4ec;border:none;border-radius:6px;color:#ad1457;cursor:pointer" onclick="addLink()">+ 添加链接</button>
+
+  <div id="categoriesContainer"></div>
 </div>
 
-<!-- 隐藏控件 -->
-<input type="file" id="img-picker" accept="image/*">
-<input type="file" id="file-picker" multiple>
+<!-- 卡片详情模态框 -->
+<div id="cardModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modalTitle">编辑模组</h3>
+      <button onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-field">
+      <label>模组名称</label>
+      <input type="text" id="cardNameInput" placeholder="例如：魔法界面美化">
+    </div>
+    <div class="modal-field">
+      <label>封面图片</label>
+      <div style="display: flex; gap: 10px;">
+        <button id="uploadImageBtn" style="background:#fce4ec; border:none; border-radius:40px; padding:8px 16px;">📷 更换图片</button>
+        <input type="file" id="modalImgPicker" accept="image/*" class="hidden-input">
+      </div>
+      <div id="imagePreview" style="margin-top: 10px; width: 100%; height: 120px; background: #f9e6ef; border-radius: 16px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        <span style="color:#b38b9e;">暂无预览</span>
+      </div>
+    </div>
+    <div class="modal-field">
+      <label>📎 下载文件（支持多个版本）</label>
+      <div id="fileListContainer" class="file-list"></div>
+      <div class="add-file-btn" onclick="addFileItem()">+ 添加下载链接 / 上传文件</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-delete-card" onclick="deleteCurrentCard()">删除此模组</button>
+      <button class="btn-save" onclick="saveCurrentCard()">保存修改</button>
+    </div>
+  </div>
+</div>
+ <script>
+  // ---------- 数据结构 ----------
+  let appData = {
+    categories: [
+      { id: "ui", name: "UI 类" },
+      { id: "cursor", name: "光标工具类" },
+      { id: "beautify", name: "美化类" },
+      { id: "npc", name: "NPC 类" },
+      { id: "story", name: "拓展剧情类" },
+      { id: "clothes", name: "衣服美化类" }
+    ],
+    cards: {},      // { categoryId: [ { id, name, imgDataUrl, files: [{ name, url }] } ] }
+    nextCardId: 1
+  };
 
-<script>
-let currentDetailCard = null; // 当前操作的详情卡片
-let currentCategory = '';      // 当前所属分类
+  let currentModalCard = null;    // 正在编辑的卡片对象 { categoryId, cardId }
+  let tempFiles = [];             // 临时存储当前卡片文件列表（编辑时用）
 
-// ---- 1. 核心：添加一个图片卡片（入口） ----
-function addCard(categoryId) {
-  currentCategory = categoryId;
-  
-  // 上传图片
-  document.getElementById('img-picker').onchange = function(e) {
+  // ---------- 辅助函数 ----------
+  function showToast(msg) {
+    let toast = document.querySelector('.toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    setTimeout(() => toast.style.opacity = '0', 2000);
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  // 保存到 localStorage
+  function saveToLocal() {
+    // 清理临时 blob URL 以免存储过大，但为了演示简单，我们存储 dataURL 或链接字符串
+    // 注意：blob URL 不能序列化，所以我们在存储前将文件 url 转为普通字符串（已有的 blob URL 会失效，但用户可重新上传）
+    // 为了避免麻烦，我们只存储普通文本链接和 dataURL 图片。文件存储时若为 blob URL 则只存名称，不存 url（下次刷新失效）
+    // 更好的做法是让用户输入网盘链接，这里简化：对于 blob URL 提醒用户改用永久链接。
+    let dataToStore = JSON.parse(JSON.stringify(appData)); // 深拷贝
+    // 不处理 blob，因为用户会重新上传
+    localStorage.setItem('stardewMods', JSON.stringify(dataToStore));
+  }
+
+  function loadFromLocal() {
+    const saved = localStorage.getItem('stardewMods');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.categories && parsed.cards) {
+          appData = parsed;
+          if (!appData.nextCardId) appData.nextCardId = 1;
+        } else {
+          initDefaultData();
+        }
+      } catch(e) { initDefaultData(); }
+    } else {
+      initDefaultData();
+    }
+    renderAll();
+  }
+
+  function initDefaultData() {
+    appData.categories = [
+      { id: "ui", name: "UI 类" },
+      { id: "cursor", name: "光标工具类" },
+      { id: "beautify", name: "美化类" },
+      { id: "npc", name: "NPC 类" },
+      { id: "story", name: "拓展剧情类" },
+      { id: "clothes", name: "衣服美化类" }
+    ];
+    appData.cards = {};
+    appData.nextCardId = 1;
+    // 添加几个示例卡片
+    const exampleCards = {
+      ui: [
+        { id: 1, name: "魔法界面", imgDataUrl: null, files: [{ name: "v1.0 直装版", url: "https://example.com/mod1" }] },
+        { id: 2, name: "花卉界面", imgDataUrl: null, files: [{ name: "美化包", url: "https://example.com/mod2" }] }
+      ],
+      beautify: [
+        { id: 3, name: "淡紫粉色界面", imgDataUrl: null, files: [] }
+      ]
+    };
+    for (let cat in exampleCards) {
+      if (exampleCards[cat]) {
+        appData.cards[cat] = exampleCards[cat];
+        for (let card of exampleCards[cat]) {
+          if (card.id >= appData.nextCardId) appData.nextCardId = card.id + 1;
+        }
+      }
+    }
+    saveToLocal();
+  }
+
+  // 渲染所有分类和卡片
+  function renderAll() {
+    const container = document.getElementById('categoriesContainer');
+    container.innerHTML = '';
+    for (let cat of appData.categories) {
+      const catDiv = document.createElement('div');
+      catDiv.className = 'category-section';
+      catDiv.setAttribute('data-cat-id', cat.id);
+      const header = document.createElement('div');
+      header.className = 'category-header';
+      header.innerHTML = `
+        <div class="category-title">${escapeHtml(cat.name)}</div>
+        <div class="category-actions">
+          <button onclick="renameCategory('${cat.id}')">✎ 重命名</button>
+          <button onclick="deleteCategory('${cat.id}')">🗑 删除分类</button>
+          <button onclick="addCardToCategory('${cat.id}')">+ 新建卡片</button>
+        </div>
+      `;
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+      grid.id = `grid-${cat.id}`;
+      catDiv.appendChild(header);
+      catDiv.appendChild(grid);
+      container.appendChild(catDiv);
+      // 填充卡片
+      const cards = appData.cards[cat.id] || [];
+      for (let card of cards) {
+        const cardEl = createCardElement(card, cat.id);
+        grid.appendChild(cardEl);
+      }
+      if (cards.length === 0) {
+        const emptyMsg = document.createElement('div');
+        emptyMsg.className = 'empty-message';
+        emptyMsg.innerText = '✨ 暂无模组，点击“新建卡片”添加';
+        grid.appendChild(emptyMsg);
+      }
+    }
+    // 应用搜索过滤
+   filterCards();
+  }
+
+  function createCardElement(card, categoryId) {
+    const div = document.createElement('div');
+    div.className = 'mod-card';
+    div.setAttribute('data-card-id', card.id);
+    div.setAttribute('data-category-id', categoryId);
+    div.setAttribute('data-card-name', card.name.toLowerCase());
+    div.onclick = (e) => {
+      if (e.target.tagName === 'BUTTON') return;
+      openModal(categoryId, card.id);
+    };
+    // 图片区域
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'card-img';
+    if (card.imgDataUrl && card.imgDataUrl.startsWith('data:image')) {
+      imgDiv.innerHTML = `<img src="${card.imgDataUrl}">`;
+    } else {
+      imgDiv.innerHTML = `<div class="placeholder">📷</div>`;
+    }
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'card-name';
+    nameDiv.innerText = card.name || '未命名';
+    // 文件数量徽章
+    const badge = document.createElement('div');
+    badge.className = 'card-badge';
+    const fileCount = (card.files && card.files.length) || 0;
+    badge.innerText = fileCount > 0 ? `${fileCount}个文件` : '无文件';
+    div.appendChild(imgDiv);
+    div.appendChild(nameDiv);
+    div.appendChild(badge);
+    return div;
+  }
+
+  // 搜索过滤
+  function filterCards() {
+    const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+    const allGrids = document.querySelectorAll('.grid');
+    allGrids.forEach(grid => {
+      const cards = grid.querySelectorAll('.mod-card');
+      let hasVisible = false;
+      cards.forEach(card => {
+        const name = card.getAttribute('data-card-name') || '';
+        if (keyword === '' || name.includes(keyword)) {
+          card.style.display = '';
+          hasVisible = true;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      // 如果网格内没有可见卡片，显示空消息（如果还没空消息则添加）
+      let emptyMsg = grid.querySelector('.empty-message-filter');
+      if (!hasVisible) {
+        if (!emptyMsg) {
+          emptyMsg = document.createElement('div');
+          emptyMsg.className = 'empty-message empty-message-filter';
+          emptyMsg.innerText = '😢 没有找到匹配的模组';
+          grid.appendChild(emptyMsg);
+        }
+      } else if (emptyMsg) {
+        emptyMsg.remove();
+      }
+    });
+  }
+
+  // ---------- 卡片操作 ----------
+  function addCardToCategory(categoryId) {
+    const newCard = {
+      id: appData.nextCardId++,
+      name: "新模组",
+      imgDataUrl: null,
+      files: []
+    };
+    if (!appData.cards[categoryId]) appData.cards[categoryId] = [];
+    appData.cards[categoryId].push(newCard);
+    saveToLocal();
+    renderAll();
+    showToast(`已添加卡片：${newCard.name}`);
+  }
+
+  function openModal(categoryId, cardId) {
+    const card = appData.cards[categoryId]?.find(c => c.id == cardId);
+    if (!card) return;
+    currentModalCard = { categoryId, cardId };
+    document.getElementById('cardNameInput').value = card.name || '';
+    // 预览图片
+    const previewDiv = document.getElementById('imagePreview');
+    if (card.imgDataUrl && card.imgDataUrl.startsWith('data:image')) {
+      previewDiv.innerHTML = `<img src="${card.imgDataUrl}" style="max-width:100%; max-height:120px; object-fit:contain;">`;
+    } else {
+      previewDiv.innerHTML = `<span style="color:#b38b9e;">暂无图片</span>`;
+    }
+    // 复制文件列表到临时变量
+    tempFiles = card.files ? card.files.map(f => ({ ...f })) : [];
+    renderFileList();
+    document.getElementById('cardModal').style.display = 'flex';
+  }
+
+  function renderFileList() {
+    const container = document.getElementById('fileListContainer');
+    container.innerHTML = '';
+    if (tempFiles.length === 0) {
+      container.innerHTML = '<div style="text-align:center; color:#b38b9e; padding:12px;">暂无下载文件，点击下方添加</div>';
+      return;
+    }
+    tempFiles.forEach((file, idx) => {
+      const div = document.createElement('div');
+      div.className = 'file-item';
+      div.innerHTML = `
+        <span>📄 ${escapeHtml(file.name)}</span>
+        <div>
+          ${file.url ? `<a href="${file.url}" target="_blank" download>下载</a>` : '<span style="color:#aaa;">无链接</span>'}
+          <button onclick="editFileItem(${idx})">✎</button>
+          <button onclick="deleteFileItem(${idx})">🗑</button>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  window.editFileItem = function(idx) {
+    const file = tempFiles[idx];
+    const newName = prompt('文件名称', file.name);
+    if (newName !== null && newName.trim()) file.name = newName.trim();
+    const newUrl = prompt('下载链接（可直接粘贴网盘地址）', file.url || '');
+    if (newUrl !== null) file.url = newUrl.trim();
+    renderFileList();
+  };
+
+  window.deleteFileItem = function(idx) {
+    tempFiles.splice(idx, 1);
+    renderFileList();
+  };
+
+  window.addFileItem = function() {
+    const name = prompt('请输入文件/版本名称（例如：v1.2 直装版）', '新版本');
+    if (!name) return;
+    const url = prompt('请输入下载链接（支持网盘链接或直接文件地址）', 'https://');
+    if (url === null) return;
+    tempFiles.push({ name: name.trim(), url: url.trim() });
+    renderFileList();
+  };
+
+  // 保存当前编辑的卡片
+  window.saveCurrentCard = function() {
+    if (!currentModalCard) return;
+    const card = appData.cards[currentModalCard.categoryId]?.find(c => c.id == currentModalCard.cardId);
+    if (!card) return;
+    card.name = document.getElementById('cardNameInput').value.trim() || '未命名';
+    card.files = tempFiles.filter(f => f.name && f.url); // 只保留有名称和链接的
+    saveToLocal();
+    closeModal();
+    renderAll();
+    showToast('已保存');
+  };
+
+  window.deleteCurrentCard = function() {
+    if (!currentModalCard) return;
+    if (confirm('确定删除此模组吗？')) {
+      const cards = appData.cards[currentModalCard.categoryId];
+      const idx = cards.findIndex(c => c.id == currentModalCard.cardId);
+      if (idx !== -1) cards.splice(idx, 1);
+      saveToLocal();
+      closeModal();
+      renderAll();
+      showToast('已删除');
+    }
+  };
+
+  // 更换图片（模态框内）
+  document.getElementById('uploadImageBtn').onclick = () => {
+    document.getElementById('modalImgPicker').click();
+  };
+  document.getElementById('modalImgPicker').onchange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    
-    const imgUrl = URL.createObjectURL(file);
-    
-    // 创建卡片HTML
-    const cardHtml = `
-      <div class="mod-card" onclick="showDetail(this)">
-        <div class="card-img"><img src="${imgUrl}"></div>
-        <div class="card-name">点击进入</div>
-      </div>
-    `;
-    
-    document.getElementById(`cat-${categoryId}`).innerHTML += cardHtml;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const imgData = ev.target.result;
+      const previewDiv = document.getElementById('imagePreview');
+      previewDiv.innerHTML = `<img src="${imgData}" style="max-width:100%; max-height:120px; object-fit:contain;">`;
+      if (currentModalCard) {
+        const card = appData.cards[currentModalCard.categoryId]?.find(c => c.id == currentModalCard.cardId);
+        if (card) card.imgDataUrl = imgData;
+        saveToLocal();
+      }
+    };
+    reader.readAsDataURL(file);
   };
-  
-  document.getElementById('img-picker').click();
-}
 
-// 给6个分类绑定添加按钮（方便扩展）
-window.addNewCategory = function() {
-  const cat = prompt("输入分类ID（如: ui）", "ui");
-  if(cat){
-    const section = document.createElement('div');
-    section.className = 'category-title';
-    section.innerText = cat + '类';
-    document.body.appendChild(section);
-    
-    const grid = document.createElement('div');
-    grid.className = 'grid';
-    grid.id = `cat-${cat}`;
-    document.body.appendChild(grid);
-    
-    // 自动给这个分类加一个添加按钮
-    alert(`分类 "${cat}" 创建成功！请刷新页面，然后通过代码手动添加：addCard('${cat}')`);
+  function closeModal() {
+    document.getElementById('cardModal').style.display = 'none';
+    currentModalCard = null;
   }
-}
+  // ---------- 分类操作 ----------
+  window.addNewCategory = function() {
+    let name = prompt('请输入分类名称', '新分类');
+    if (!name) return;
+    let id = name.replace(/\s/g, '').toLowerCase() + Date.now();
+    while (appData.categories.find(c => c.id === id)) {
+      id = id + '_' + Math.random().toString(36).substr(2, 4);
+    }
+    appData.categories.push({ id, name });
+    appData.cards[id] = [];
+    saveToLocal();
+    renderAll();
+    showToast(`已添加分类：${name}`);
+  };
 
-// ---- 2. 核心：点图片进入详情页 ----
-function showDetail(cardEl) {
-  currentDetailCard = cardEl;
-  
-  // 显示详情页，隐藏列表页
-  document.getElementById('list-page').style.display = 'none';
-  document.getElementById('detail-page').style.display = 'block';
-  
-  // 这里可以加载该卡片之前保存的链接（如果有）
-  // 目前是空白，你可以自己加
-}
+  window.renameCategory = function(categoryId) {
+    const cat = appData.categories.find(c => c.id === categoryId);
+    if (cat) {
+      const newName = prompt('新分类名称', cat.name);
+      if (newName && newName.trim()) {
+        cat.name = newName.trim();
+        saveToLocal();
+        renderAll();
+      }
+    }
+  };
 
-// ---- 3. 核心：详情页返回 ----
-function showList() {
-  document.getElementById('list-page').style.display = 'block';
-  document.getElementById('detail-page').style.display = 'none';
-}
+  window.deleteCategory = function(categoryId) {
+    const cat = appData.categories.find(c => c.id === categoryId);
+    if (confirm(`确定删除分类“${cat.name}”吗？其中的所有模组也会删除。`)) {
+      const idx = appData.categories.findIndex(c => c.id === categoryId);
+      if (idx !== -1) {
+        appData.categories.splice(idx, 1);
+        delete appData.cards[categoryId];
+        saveToLocal();
+        renderAll();
+        if (currentModalCard?.categoryId === categoryId) closeModal();
+      }
+    }
+  };
 
-// ---- 4. 核心：添加链接 ----
-function addLink() {
-  const linkHtml = `
-    <div class="link-item">
-      <input type="text" placeholder="输入链接或文件名" value="https://">
-      <button onclick="this.parentElement.remove()">删除</button>
-    </div>
-  `;
-  document.getElementById('link-container').innerHTML += linkHtml;
-}
+  // 导入导出
+  window.exportData = function() {
+    const dataStr = JSON.stringify(appData, null, 2);
+    const blob = new Blob([dataStr], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'stardew_mods_backup.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('导出成功');
+  };
 
-// ---- 5. 辅助：监听文件导入（如果需要上传文件而不是链接） ----
-// 你可以根据需要选择是用“链接”还是“上传文件”
-// 目前版本是“链接模式”，点进详情页可以自己加多个链接
+  window.importData = function() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          try {
+            const imported = JSON.parse(ev.target.result);
+            if (imported.categories && imported.cards) {
+              appData = imported;
+              if (!appData.nextCardId) appData.nextCardId = 1;
+              saveToLocal();
+              renderAll();
+              showToast('导入成功');
+            } else {
+              showToast('文件格式错误');
+            }
+          } catch(err) {
+            showToast('解析失败');
+          }
+        };
+        reader.readAsText(file);
+      }
+    };
+    input.click();
+  };
+
+  // 初始化
+  loadFromLocal();
 </script>
-
 </body>
 </html>
+```
+    
