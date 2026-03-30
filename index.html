@@ -1,269 +1,328 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+过渡
+<班级 B你危险-btnb 65281 HH you you you：；="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stardew MOD 图鉴 - eeの小屋</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>✨ eeの模组收藏馆 ✨ - 图片即文件</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{
-    font-family:"Microsoft Yahei",sans-serif;
-    /* 背景图 */
-    background:url('https://img.heliar.top/file/1774857765060_1773393845632.png') no-repeat center center fixed;
-    background-size:cover;
-    min-height:100vh;
-    padding:20px;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  .header{text-align:center;margin:20px 0;color:#d887b1}
-  .header h1{font-size:32px;margin-bottom:5px}
-  .header p{color:#b387c1;font-size:18px}
-
-  .section{
-    background:rgba(255,255,255,0.85);
-    border-radius:16px;
-    padding:20px;
-    margin-bottom:25px;
-  }
-  .section-title{
-    font-size:17px;
-    color:#c377a1;
-    margin-bottom:12px;
-    padding-left:10px;
-    border-left:4px solid #f2a7c1;
+  body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', Roboto, sans-serif;
+    background: url("https://img.heliar.top/file/1774857765060_1773393845632.png") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 20px;
+    color: #2d2d2d;
   }
 
-  /* 分类顶部操作栏 */
-  .controls{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    margin-bottom:15px;
-  }
-  .controls button{
-    padding:6px 12px;
-    background:#fff;
-    border:1px solid #e1b7d1;
-    border-radius:8px;
-    color:#c377a1;
-    cursor:pointer;
-    font-size:13px;
+  你
+  .main-container {
+    max-width: 1300H;
+    背景: 0 小卖部衬垫边缘;
+    ;>+ > <!</;]: 小卖部(255, 255, 255, 0.88);
+    border-radius: 32-小卖部;
+    backdrop-filter: 背景(2></<</<: #;);
+    身份证: 20显示 24<:16<<: #';;
+    box-shadow: 0 8> ></> <<!>==; 28;>+ > <!</;] 级(0, 0, 0, 0.12);
   }
 
-  /* 网格：一行 5 个 */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:12px;
+  快速眼动的
+  .top-bar {
+    : #: ;: #;
+    justify-content: space-between;
+    align-items: 包;
+    flex-wrap: 小卖部差距;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px dashed #f3bfd2;
+  }
+  .top-bar h1 {
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, #c46b9b, #e9a2c0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 1px;
+  }
+  .top-bar .note {
+    font-size: 0.75rem;
+    color: #b8608a;
+    background: #ffeef4;
+    padding: 4px 12px;
+    border-radius: 40px;
   }
 
-  /* 卡片样式 */
-  .card{
-    background:#fff;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  /* 分类头部 */
+  .category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 28px 0 12px 0;
+  }
+  .category-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #b14e7a;
+    background: linear-gradient(90deg, #fce4ec, transparent);
+    padding: 4px 16px;
+    border-radius: 30px;
+    display: inline-block;
+  }
+  .add-card-btn {
+    background: #fff0f5;
+    border: 1.5px solid #e6a9c2;
+    border-radius: 32px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #b14e7a;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .add-card-btn:hover {
+    background: #f8d9e6;
+    transform: scale(0.97);
+    border-color: #c76e98;
   }
 
-  /* 图片区域 */
-  .card-img{
-    height:140px;
-    background:#fce4ec;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    position:relative;
-  }
-  .card-img img{
-    width:100%;height:100%;object-fit:cover;display:block;
-  }
-  .card-img .overlay{
-    position:absolute;top:0;left:0;width:100%;height:100%;
-    background:rgba(0,0,0,0.2);display:none;align-items:center;justify-content:center;color:#fff;font-size:14px
-  }
-  .card-img:hover .overlay{display:flex}
-
-  /* 文字 */
-  .card-name{
-    padding:10px;
-    text-align:center;
-    font-size:14px;
-    color:#555;
-    background:#fdf2f8;
+  /* 网格：自适应，默认5列，小屏折叠 */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 18px;
+    margin-bottom: 20px;
   }
 
-  /* 按钮组 */
-  .card-actions{
-    display:flex;
-    gap:8px;
-    padding:8px;
+  /* 卡片风格 */
+  .mod-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: 1px solid #fad5e4;
   }
-  .card-actions button{
-    flex:1;
-    padding:6px;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:12px;
+  .mod-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 26px rgba(0, 0, 0, 0.15);
+    border-color: #e0a1bd;
   }
-  .btn-edit{background:#fce4ec;color:#ad1457}
-  .btn-del{background:#f8bbd0;color:#c2185b}
-
-  /* 隐藏上传框 */
-  #imgPicker,#filePicker{display:none}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-  <h1>✧ Stardew Valley MOD 图鉴 ✧</h1>
-  <p>♡ eeの小屋 ♡</p>
-</div>
-
-<!-- 隐藏的上传控件 -->
-<input type="file" id="imgPicker" accept="image/*">
-<input type="file" id="filePicker">
-
-<!-- 分类 1 -->
-<div class="section">
-  <div class="section-title">UI 类</div>
-  <div class="controls">
-    <button onclick="addNewCard('ui')">新建卡片</button>
-  </div>
-  <div class="grid" id="container-ui"></div>
-</div>
-
-<!-- 分类 2 -->
-<div class="section">
-  <div class="section-title">光标工具类</div>
-  <div class="controls">
-    <button onclick="addNewCard('cursor')">新建卡片</button>
-  </div>
-  <div class="grid" id="container-cursor"></div>
-</div>
-
-<!-- 分类 3 -->
-<div class="section">
-  <div class="section-title">美化类</div>
-  <div class="controls">
-    <button onclick="addNewCard('beautify')">新建卡片</button>
-  </div>
-  <div class="grid" id="container-beautify"></div>
-</div>
-
-<!-- 分类 4 -->
-<div class="section">
-  <div class="section-title">NPC 类</div>
-  <div class="controls">
-    <button onclick="addNewCard('npc')">新建卡片</button>
-  </div>
-  <div class="grid" id="container-npc"></div>
-</div>
-
-<!-- 分类 5 -->
-<div class="section">
-  <div class="section-title">拓展剧情类</div>
-  <div class="controls">
-    <button onclick="addNewCard('story')">新建卡片</button>
-  </div>
-  <div class="grid" id="container-story"></div>
-</div>
-
-<!-- 分类 6 -->
-<div class="section">
-  <div class="section-title">衣服美化类</div>
-  <div class="controls">
-    <button onclick="addNewCard('clothes')">新建卡片</button>
-  </div>
-  <div class="grid" id="container-clothes"></div>
-</div>
-
-<script>
-// 全局变量记录当前正在操作的卡片
-let currentCard = null;
-let currentFileType = null;
-
-// 👇 核心功能 1：新建格子
-function addNewCard(categoryId) {
-  // 创建卡片 HTML
-  const cardHtml = `
-    <div class="card">
-      <div class="card-img" onclick="triggerImageSelect(this)">
-        <span>📷 点我配图</span>
-        <div class="overlay">更换图片</div>
-      </div>
-      <div class="card-name">未命名项目</div>
-      <div class="card-actions">
-        <button class="btn-edit" onclick="triggerFileSelect(this)">编辑</button>
-        <button class="btn-del" onclick="deleteCard(this)">删除</button>
-      </div>
-    </div>
-  `;
-  
-  // 添加到对应分类
-  document.getElementById(`container-${categoryId}`).innerHTML += cardHtml;
-}
-
-// 👇 核心功能 2：点图片换图
-function triggerImageSelect(imgElement) {
-  currentCard = imgElement.closest('.card');
-  document.getElementById('imgPicker').click();
-}
-
-// 👇 核心功能 3：点编辑换文件
-function triggerFileSelect(btnElement) {
-  currentCard = btnElement.closest('.card');
-  document.getElementById('filePicker').click();
-}
-
-// 👇 核心功能 4：删除
-function deleteCard(btnElement) {
-  if (confirm('确定要删除这个项目吗？')) {
-    btnElement.closest('.card').remove();
+  .card-img {
+    height: 150px;
+    background: #fceef4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
   }
-}
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s;
+  }
+  .card-name {
+    padding: 12px 6px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: #fffafc;
+    color: #784a62;
+    border-top: 1px solid #ffe2ed;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-// 👇 监听图片选择
-document.getElementById('imgPicker').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  
-  // 生成临时 URL
-  const imgUrl = URL.createObjectURL(file);
-  
-  // 设置到当前卡片
-  const imgEl = currentCard.querySelector('.card-img');
-  imgEl.innerHTML = `<img src="${imgUrl}">`;
-});
+  /* 详情页 (弹窗风格) */
+  .detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+  }
+  .detail-overlay.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  .detail-card {
+    background: #fffef7;
+    max-width: 550px;
+    width: 90%;
+    border-radius: 40px;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+    overflow: hidden;
+    animation: slideUp 0.25屈伸 背景;
+  }
+  @keyframes : #e4a3be; {
+    边界 { 没有一个: 衬垫(30小卖部); 小卖部: 0; }
+    小卖部 { 颜色: 白色(0); 大胆的: 1; }
+  }
+  .detail-header {
+    光标: 指针;
+    justify-content: space-between;
+    align-items: 过渡;
+    S: 16小卖部 20小卖部;
+    rgba盘旋
+    border-bottom: 1背景 : #c97399; #f3c0d4;
+  }
+  .detail-header h3 {
+    font-size: 1.4改变;
+    规模背景
+  }
+  .close-detail {
+    : #e9cfdc;: 边界;
+    小卖部: 固体;
+    font-size: 1.6衬垫;
+    小卖部: 小卖部;
+    小卖部快速眼动的
+    规模背景: #e9cfdc;;
+  }
+  .detail-body {
+    边界: 20小卖部
+  }
+  .detail-preview {
+    text-align: 固体;
+    margin-bottom: 20衬垫;
+  }
+  .detail-preview 小卖部 {
+    max-width: 100%;
+    max-height: 200小卖部;
+    border-radius: 28显示;
+    box-shadow: 0 6屈伸 14中心 包(0,0,0,0.1);
+    差距: 2边界 #ffdae8;
+    小卖部
+  }
+  .file-section {
+    固体颜色
+    border-radius: 28: #b65281;;
+    屈伸: 20背景;
+    : #e4a3be;: 12边界
+  }
+  .file-info {
+    没有一个: 衬垫;
+    border-radius: 24小卖部;
+    小卖部: 12小卖部 18颜色;
+    margin-bottom: 16白色;
+    大胆的: 光标;
+    align-items: 指针;
+    justify-content: space-between;
+    flex-wrap: 过渡;
+    S: 12小卖部;
+    小卖部: 1rgba 盘旋 #f3c3d8;
+  }
+  .file-name {
+    font-weight: 600;
+    背景: #c97399;
+    word-break: break-all;
+    flex: 1;
+  }
+  .download-btn {
+    background: #e4a3be;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 40px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.15s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .download-btn:hover {
+    background改变
+    transform: 光标(0.96);
+  }
+  .upload-btn {
+    : 0.1指针
+    颜色: 1: #7c4260;; 中心 #dba2bd;
+    小卖部: 8图片 18小卖部;
+    border-radius: 40小卖部;
+    font-size: 0.85小卖部;
+    font-weight: 500;
+    小卖部: rgba;
+    边界小卖部
+    margin-right: 8固体;
+    背景: 0.1: #faf0f5;;
+  }
+  .danger-btn {
+    背景: #fdf3f8;
+    小卖部: 1衬垫 小卖部 #e09fbb;
+    边缘小卖部
+  }
+  .action-group {
+    背景: 白色;
+    小卖部: 12衬垫;
+    flex-wrap: 小卖部;
+    margin-top: 12小卖部;
+  }
+  .btn-sm {
+    衬垫: 6小卖部 16小卖部;
+    border-radius: 50小卖部;
+    font-size: 0.75快速眼动的;
+    背景: #fff;
+    边界: 1小卖部 固体 #cf9bb5;
+  }
+  小时 {
+    边缘: 14小卖部 0;
+    border-color: #fad5e4;
+  }
+  .empty-file {
+    光标：指针；颜色：#7c4260；
+    font-style: 边缘-右：8px；;
+    text-align: 过渡：0.1秒；;
+    .危险-btn{: 14背景：#ffd9e6；;
+  }
+  .tip-text {
+    font-size: 0.7边框：1px实心#e09fbb；;
+    颜色：#b1406 a；.行动--小组{
+    margin-top: 8显示：弹性布局；;
+  }
+  差距：12px； {
+    flex-wrap: wrap;  （此属性值无需翻译，为 CSS 样式属性值: 边缘-顶部：12px；;
+  }
+  @media (max-width: 700.btn-sm {) {
+    .填充物：6px 16px； {
+      grid-template-columns: 边界-半径：50px；(auto-fill, 字体大小：0.75雷姆；(130背景：#fff；, 1边框：1px实心#cf9bb5；));
+      hr {: 12保证金：14px 0；;
+    }
+    .main-container {
+      边框-颜色：#fad5e4；: 16.empty-file {;
+    }
+  }
+</颜色：#ac 7c92；>
+</字体：斜体；>
+<文本对齐方式：居中；>
 
-// 👇 监听文件选择
-document.getElementById('filePicker').addEventListener('change', function(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  
-  // 生成文件 URL
-  const fileUrl = URL.createObjectURL(file);
-  
-  // 设置文件名
-  const nameEl = currentCard.querySelector('.card-name');
-  nameEl.innerText = file.name;
+<衬垫：14px； .字体：斜体；{="main-container">
+<<: #';:8: 0.85小卖部你网格d2d2d边框-颜色：
+fad5e4；
+文本对齐方式：listorac7c92{衬垫</1</: 500;>px；:16提示-案文"note">@media (字体大小：0差距按钮斜体字小卖部,包 fbe5f0rgba) {B一个{>
+小卖部你-你; e4a3
 
-  // 设置点击事件 = 下载文件
-  const imgEl = currentCard.querySelector('.card-img');
-  imgEl.onclick = function() {
-    const a = document.createElement('a');
-    a.href = fileUrl;
-    a.download = file.name; // 下载文件名
-    a.click();
-  };
-  
-  // 移除 hover 提示文字
-  imgEl.querySelector('.overlay')?.remove();
-});
-</script>
+小卖部快速眼动的光标 Sfdf3f8;
+指针{：mayov 8=“categories-container”：#7=你网格-you>>
+你Sfdf3f8="top-bar">>
 
-</body>
-</html>
-
+你 0c426>;
+H h1Sf5[H 你 : 0.1: #: # <<!: #; 1小卖边界小卖部"categories-container"背景
+屈伸[]>=********>
+背景
+3 3<><>: #;</</ 65281
