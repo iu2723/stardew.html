@@ -707,6 +707,41 @@
     tempFiles.push({ name: name.trim(), url: url.trim() });
     renderFileList();
   };
+  // 从手机/电脑本地选择文件，生成临时下载链接
+window.uploadLocalFile = function() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.style.display = 'none';
+  document.body.appendChild(input);
+  
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    // 生成一个临时 Blob URL
+    const blobUrl = URL.createObjectURL(file);
+    
+    // 文件名（不含路径）
+    const fileName = file.name;
+    
+    // 添加到当前编辑卡片的文件列表（tempFiles）
+    if (typeof tempFiles !== 'undefined' && tempFiles) {
+      tempFiles.push({
+        name: fileName,
+        url: blobUrl
+      });
+      renderFileList();   // 刷新文件列表显示
+      showToast(`已添加文件：${fileName}（临时链接，刷新页面后失效）`);
+    } else {
+      showToast('请先打开一个模组卡片');
+    }
+    
+    // 清理 input 元素
+    document.body.removeChild(input);
+  };
+  
+  input.click();
+};
 
   // 保存当前编辑的卡片
   window.saveCurrentCard = function() {
