@@ -2,326 +2,278 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>✨ 多文件模组库 ✨ 图片即文件集合</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eeの小屋 - 星露谷模组合集</title>
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:"Microsoft Yahei",sans-serif;
+    background:url("https://img.heliar.top/file/1774857765060_1773393845632.png") no-repeat center center fixed;
+    background-size:cover;
+    min-height:100vh;
+    padding:15px;
+    color:#333;
   }
 
-  body {
-    font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', Roboto, sans-serif;
-    background: url("https://img.heliar.top/file/1774857765060_1773393845632.png") no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-    padding: 20px;
-    color: #2d2d2d;
+  /* 顶部导航 */
+  .top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+  }
+  .top-bar h1{
+    font-size:22px;
+    color:#d887b1;
+    text-shadow:0 0 4px rgba(255,255,255,0.5);
+  }
+  .top-bar button{
+    padding:8px 12px;
+    background:#fff;
+    border:1px solid #e1b7d1;
+    border-radius:8px;
+    color:#c377a1;
+    cursor:pointer;
+    font-size:12px;
   }
 
-  /* 主容器毛玻璃效果 */
-  .main-container {
-    max-width: 1300px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.88);
-    border-radius: 32px;
-    backdrop-filter: blur(2px);
-    padding: 20px 24px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  /* 分类标题 */
+  .category-title{
+    font-size:16px;
+    color:#c377a1;
+    margin:15px 0 10px 5px;
+    padding-left:5px;
+    border-left:3px solid #f2a7c1;
   }
 
-  /* 顶部栏 */
-  .top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px dashed #f3bfd2;
-  }
-  .top-bar h1 {
-    font-size: 1.8rem;
-    background: linear-gradient(135deg, #c46b9b, #e9a2c0);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    letter-spacing: 1px;
-  }
-  .top-bar .note {
-    font-size: 0.75rem;
-    color: #b8608a;
-    background: #ffeef4;
-    padding: 4px 12px;
-    border-radius: 40px;
+  /* 网格：一排 5 个（和截图一样） */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-bottom:25px;
   }
 
-  /* 分类头部 */
-  .category-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 28px 0 12px 0;
+  /* 卡片样式（模仿你给的APP截图） */
+  .mod-card{
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:transform 0.2s;
   }
-  .category-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #b14e7a;
-    background: linear-gradient(90deg, #fce4ec, transparent);
-    padding: 4px 16px;
-    border-radius: 30px;
-    display: inline-block;
+  .mod-card:hover{transform:scale(1.02)}
+
+  .card-img{
+    height:130px;
+    background:#fce4ec;
   }
-  .add-card-btn {
-    background: #fff0f5;
-    border: 1.5px solid #e6a9c2;
-    border-radius: 32px;
-    padding: 5px 14px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #b14e7a;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  .card-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
   }
-  .add-card-btn:hover {
-    background: #f8d9e6;
-    transform: scale(0.97);
-    border-color: #c76e98;
+  /* 移除了 .card-name 区域，卡片下方不再显示文字 */
+
+  /* 详情页容器（默认隐藏） */
+  #detail-page{
+    display:none;
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0 4px 16px rgba(0,0,0,0.15);
+  }
+  .detail-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    padding-bottom:10px;
+    border-bottom:1px solid #f8bbd0;
+  }
+  .detail-header h2{color:#d887b1;font-size:18px}
+  .detail-header button{
+    padding:6px 10px;
+    background:#f8bbd0;
+    border:none;
+    border-radius:6px;
+    color:#c2185b;
+    cursor:pointer;
   }
 
-  /* 网格：自适应，默认5列，小屏折叠 */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 18px;
-    margin-bottom: 20px;
-  }
-
-  /* 卡片风格 - 无文字区域 */
-  .mod-card {
-    background: white;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-    transition: all 0.25s ease;
-    cursor: pointer;
-    border: 1px solid #fad5e4;
-  }
-  .mod-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 26px rgba(0, 0, 0, 0.15);
-    border-color: #e0a1bd;
-  }
-  .card-img {
-    height: 160px;
-    background: #fceef4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-  }
-  .card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.2s;
-  }
-  /* 完全移除了 .card-name 样式，卡片不再显示文字 */
-
-  /* 详情页 (弹窗风格) */
-  .detail-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.2s;
-  }
-  .detail-overlay.active {
-    visibility: visible;
-    opacity: 1;
-  }
-  .detail-card {
-    background: #fffef7;
-    max-width: 650px;
-    width: 90%;
-    max-height: 85vh;
-    border-radius: 40px;
-    box-shadow: 0 25px 45px rgba(0,0,0,0.3);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    animation: slideUp 0.25s ease;
-  }
-  @keyframes slideUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  .detail-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 20px;
-    background: #fbe5f0;
-    border-bottom: 1px solid #f3c0d4;
-  }
-  .detail-header h3 {
-    font-size: 1.4rem;
-    color: #a5426e;
-  }
-  .close-detail {
-    background: none;
-    border: none;
-    font-size: 1.6rem;
-    cursor: pointer;
-    color: #b25f84;
-    transition: 0.1s;
-  }
-  .detail-body {
-    padding: 20px;
-    overflow-y: auto;
-    flex: 1;
-  }
-  .detail-preview {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  .detail-preview img {
-    max-width: 100%;
-    max-height: 180px;
-    border-radius: 28px;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-    border: 2px solid #ffdae8;
-    background: #faf0f5;
-  }
-  .file-section {
-    background: #fdf3f8;
-    border-radius: 28px;
-    padding: 16px;
-    margin: 12px 0;
-  }
-  .files-list {
-    margin-bottom: 20px;
-    max-height: 320px;
+  /* 详情内的文件列表区域 */
+  .files-list{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-bottom:15px;
+    max-height: 400px;
     overflow-y: auto;
   }
-  .file-item {
-    background: white;
-    border-radius: 24px;
-    padding: 12px 16px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
+  .file-item{
+    display:flex;
+    align-items:center;
+    padding:12px;
+    background:#fdf2f8;
+    border-radius:10px;
+    border:1px solid #f8bbd0;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-    border: 1px solid #f3c3d8;
   }
-  .file-name {
-    font-weight: 600;
-    color: #b65281;
+  .file-name{
+    flex:1;
+    font-size:13px;
+    color:#c377a1;
     word-break: break-all;
-    flex: 1;
-    font-size: 0.9rem;
   }
-  .download-btn {
-    background: #e4a3be;
-    border: none;
-    padding: 6px 16px;
-    border-radius: 40px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.15s;
-    font-size: 0.8rem;
+  .file-actions button{
+    margin-left:8px;
+    padding:4px 10px;
+    background:#fff;
+    border:1px solid #e1b7d1;
+    border-radius:6px;
+    color:#c377a1;
+    cursor:pointer;
+    font-size:12px;
   }
-  .download-btn:hover {
-    background: #c97399;
-    transform: scale(0.96);
+  .add-file-btn{
+    margin-top:15px;
+    padding:8px;
+    background:#fce4ec;
+    border:none;
+    border-radius:6px;
+    color:#ad1457;
+    cursor:pointer;
+    width:100%;
   }
-  .delete-file-btn {
-    background: #ffe0e8;
-    border: 1px solid #e0a5c0;
-    color: #b1456e;
-    padding: 6px 12px;
-    border-radius: 30px;
-    font-size: 0.7rem;
-    cursor: pointer;
+  .empty-files{
+    text-align:center;
+    color:#c377a1;
+    padding:20px;
   }
-  .upload-btn {
-    background: #e9cfdc;
-    border: 1px solid #dba2bd;
-    padding: 8px 18px;
-    border-radius: 40px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    color: #7c4260;
-    margin-right: 8px;
-    transition: 0.1s;
-  }
-  .action-group {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-  }
-  .empty-files {
-    color: #ac7c92;
-    font-style: italic;
-    text-align: center;
-    padding: 20px;
-    background: #fff4f9;
-    border-radius: 28px;
-  }
-  .tip-text {
-    font-size: 0.7rem;
-    color: #b07493;
-    margin-top: 12px;
-    text-align: center;
-  }
-  button {
-    cursor: pointer;
-  }
-  @media (max-width: 700px) {
-    .grid {
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 12px;
-    }
-    .main-container {
-      padding: 16px;
-    }
-    .file-item {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .download-btn, .delete-file-btn {
-      align-self: flex-end;
-    }
-  }
+
+  /* 隐藏上传 */
+  #img-picker, #file-picker{display:none}
 </style>
 </head>
+
 <body>
 
-<div class="main-container">
+<!-- 列表页面 -->
+<div id="list-page">
   <div class="top-bar">
-    <h1>🍎 图片即是文件库 · 多文件收藏</h1>
-    <div class="note">✨ 点击图片 → 管理多个文件，自由下载 ✨</div>
+    <h1>✧ 星露谷模组合集 ✧</h1>
+    <button onclick="addNewCategory()">新建分类</button>
   </div>
-  <div id="categories-container"></div>
+
+  <!-- 分类：UI 类 -->
+  <div class="category-title">UI 类</div>
+  <div class="grid" id="cat-ui"></div>
+
+  <!-- 分类：光标工具类 -->
+  <div class="category-title">光标工具类</div>
+  <div class="grid" id="cat-cursor"></div>
+
+  <!-- 分类：美化类 -->
+  <div class="category-title">美化类</div>
+  <div class="grid" id="cat-beautify"></div>
+
+  <!-- 分类：NPC 类 -->
+  <div class="category-title">NPC 类</div>
+  <div class="grid" id="cat-npc"></div>
+
+  <!-- 分类：拓展剧情类 -->
+  <div class="category-title">拓展剧情类</div>
+  <div class="grid" id="cat-story"></div>
+
+  <!-- 分类：衣服美化类 -->
+  <div class="category-title">衣服美化类</div>
+  <div class="grid" id="cat-clothes"></div>
 </div>
 
-<!-- 详情浮层 -->
-<div id="detailOverlay" class="detail-overlay">
-  <div class="detail-
+<!-- 详情页面 -->
+<div id="detail-page">
+  <div class="detail-header">
+    <h2 id="detail-title">项目详情</h2>
+    <button onclick="showList()">返回</button>
+  </div>
+  <div id="file-list-container" class="files-list"></div>
+  <button class="add-file-btn" onclick="addFileToCurrentCard()">+ 添加文件</button>
+  <button class="add-file-btn" style="margin-top:8px; background:#f8bbd0;" onclick="replaceCardImage()">🖼️ 更换封面图</button>
+</div>
+
+<!-- 隐藏控件 -->
+<input type="file" id="img-picker" accept="image/*">
+<input type="file" id="file-picker" multiple>
+
+<script>
+// ======================= 数据结构 =======================
+// 全局存储: { categoryId: [ 卡片对象 ] }
+// 卡片对象: { id, imageBase64, files: [ { name, base64, type } ] }
+let appData = {};
+
+// 当前正在编辑的卡片
+let currentDetailCard = null;      // DOM 元素
+let currentCardId = null;          // 卡片ID
+let currentCategoryId = null;      // 所属分类
+
+// 初始化默认分类
+const categories = ['ui', 'cursor', 'beautify', 'npc', 'story', 'clothes'];
+categories.forEach(cat => {
+  if (!appData[cat]) appData[cat] = [];
+});
+
+// ======================= 加载/保存 localStorage =======================
+function saveToLocalStorage() {
+  localStorage.setItem('mod_multi_data', JSON.stringify(appData));
+}
+
+function loadFromLocalStorage() {
+  const stored = localStorage.getItem('mod_multi_data');
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      // 确保每个分类都有数组
+      categories.forEach(cat => {
+        if (!parsed[cat]) parsed[cat] = [];
+      });
+      appData = parsed;
+    } catch(e) { console.warn(e); initDefaultData(); }
+  } else {
+    initDefaultData();
+  }
+  // 渲染所有分类
+  renderAllCategories();
+}
+
+// 默认示例数据（苹果卡片带两个示例文件）
+function initDefaultData() {
+  const demoAppleImg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23fde047'/%3E%3Ctext x='50' y='70' font-size='52' text-anchor='middle' fill='%23b45309'%3E🍎%3C/text%3E%3C/svg%3E";
+  const exampleFile1 = "data:text/plain;base64,VGhpcyBpcyBhbiBleGFtcGxlIE1PRCBmaWxlIDEu";
+  const exampleFile2 = "data:text/plain;base64,U2Vjb25kIGV4YW1wbGUgZmlsZSBmb3IgZGVtby4=";
+  appData.beautify.push({
+    id: 'demo_' + Date.now(),
+    imageBase64: demoAppleImg,
+    files: [
+      { name: '说明文档.txt', base64: exampleFile1, type: 'text/plain' },
+      { name: '贴图包示例.txt', base64: exampleFile2, type: 'text/plain' }
+    ]
+  });
+  saveToLocalStorage();
+}
+
+// ======================= 渲染所有分类 =======================
+function renderAllCategories() {
+  for (let cat of categories) {
+    const grid = document.getElementById(`cat-${cat}`);
+    if (!grid) continue;
+    const cards = appData[cat] || [];
+    grid.innerHTML = '';
+    cards.forEach(card => {
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'mod-card';
+      cardDiv.setAttribute('data-id', card.id);
+      cardDiv.setAttribute('data-cat', cat);
+      const imgSrc = card.imageBase64 || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="1
